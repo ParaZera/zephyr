@@ -1,10 +1,11 @@
 # Drivers configuration options for Sensirion STS4x
 
 # Copyright (c) 2024 Jan Fäh
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config STS4X
-	bool "STS4x Temperature Sensor"
+	bool "STS4X (Sensirion) temperature sensor driver"
 	default y
 	depends on DT_HAS_SENSIRION_STS4X_ENABLED
 	select I2C

@@ -2,10 +2,11 @@
 
 # Copyright (c) 2021 Bosch Sensortec GmbH
 # Copyright (c) 2022 Nordic Semiconductor ASA
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig BMI270
-	bool "BMI270 Inertial measurement unit"
+	bool "BMI270 (Bosch) IMU sensor driver"
 	default y
 	depends on DT_HAS_BOSCH_BMI270_ENABLED
 	select I2C if $(dt_compat_on_bus,$(DT_COMPAT_BOSCH_BMI270),i2c)

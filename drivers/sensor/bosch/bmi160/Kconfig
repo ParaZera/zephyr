@@ -1,10 +1,11 @@
 # Bosch BMI160 inertial measurement configuration options
 
 # Copyright (c) 2016 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig BMI160
-	bool "Bosch BMI160 inertial measurement unit"
+	bool "BMI160 (Bosch) IMU sensor driver"
 	default y
 	depends on DT_HAS_BOSCH_BMI160_ENABLED
 	select I2C if $(dt_compat_on_bus,$(DT_COMPAT_BOSCH_BMI160),i2c)

@@ -1,10 +1,11 @@
 # SHT4x temperature and humidity sensor configuration options
 
 # Copyright (c) 2021 Leonard Pollak
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config SHT4X
-	bool "SHT4x Temperature and Humidity Sensor"
+	bool "SHT4X (Sensirion) temperature and humidity sensor driver"
 	default y
 	depends on DT_HAS_SENSIRION_SHT4X_ENABLED
 	select I2C

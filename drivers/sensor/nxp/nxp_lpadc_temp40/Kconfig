@@ -1,10 +1,11 @@
 # NXP LPADC_TEMP40 temperature sensor configuration options
 
 # Copyright 2025 NXP
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config LPADC_TEMP40
-	bool "NXP LPADC_TEMP40 Temperature Sensor"
+	bool "LPADC-TEMP40 (NXP) temperature sensor driver"
 	default y
 	depends on DT_HAS_NXP_LPADC_TEMP40_ENABLED
 	select ADC

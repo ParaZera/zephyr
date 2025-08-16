@@ -1,10 +1,11 @@
 # LM95234 temperature sensor config
 
 # Copyright (c) 2024 Calian Advanced Technologies
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config LM95234
-	bool "LM95234 Temperature Sensor"
+	bool "LM95234 (TI) temperature sensor driver"
 	default y
 	depends on DT_HAS_NATIONAL_LM95234_ENABLED
 	select I2C

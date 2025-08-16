@@ -1,10 +1,11 @@
 # MPU6050 Six-Axis Motion Tracking device configuration options
 
 # Copyright (c) 2016 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig MPU6050
-	bool "MPU6050 Six-Axis Motion Tracking Device"
+	bool "MPU6050 (TDK) six-axis motion tracking sensor driver"
 	default y
 	depends on DT_HAS_INVENSENSE_MPU6050_ENABLED
 	select I2C

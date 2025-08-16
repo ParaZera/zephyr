@@ -1,8 +1,9 @@
 # Copyright (c) 2016 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig HTS221
-	bool "HTS221 temperature and humidity sensor"
+	bool "HTS221 (ST) temperature and humidity sensor driver"
 	default y
 	depends on DT_HAS_ST_HTS221_ENABLED
 	depends on ZEPHYR_HAL_ST_MODULE

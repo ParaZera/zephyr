@@ -1,10 +1,11 @@
 # STM32 digital temperature sensor configuration options
 
 # Copyright (c) 2024 Aurelien Jarno
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config STM32_DIGI_TEMP
-	bool "STM32 Digital Temperature Sensor"
+	bool "STM32 (ST) digital temperature sensor driver"
 	default y
 	depends on DT_HAS_ST_STM32_DIGI_TEMP_ENABLED
 	depends on SOC_FAMILY_STM32

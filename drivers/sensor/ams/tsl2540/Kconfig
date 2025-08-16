@@ -1,10 +1,11 @@
 # TSL2540 Ambient Light Sensor configuration options
 
 # Copyright (c) 2022 T-Mobile USA, Inc.
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig TSL2540
-	bool "TSL2540 Ambient Light Sensor"
+	bool "TSL2540 (AMS) ambient light sensor driver"
 	default y
 	depends on DT_HAS_AMS_TSL2540_ENABLED
 	select I2C

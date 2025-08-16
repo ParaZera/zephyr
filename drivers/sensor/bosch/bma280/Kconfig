@@ -1,10 +1,11 @@
 # BMA280 Three Axis Accelerometer configuration options
 
 # Copyright (c) 2016 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig BMA280
-	bool "BMA280 Three Axis Accelerometer Family"
+	bool "BMA280 (Bosch) three axis accelerometer sensor driver"
 	default y
 	depends on DT_HAS_BOSCH_BMA280_ENABLED
 	select I2C

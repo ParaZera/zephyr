@@ -1,8 +1,9 @@
 # Copyright (c) 2025 Dipak Shetty <shetty.dipak@gmx.com>
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config EVERLIGHT_ALS_PT19
-	bool "Everlight ALS-PT19 Ambient Light Sensor"
+	bool "ALS-PT19 (Everlight) ambient light sensor driver"
 	default y
 	depends on DT_HAS_EVERLIGHT_ALS_PT19_ENABLED
 	select ADC

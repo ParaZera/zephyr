@@ -2,7 +2,11 @@
 
 # Copyright (c) 2016 ARM Ltd.
 # Copyright (c) 2024 Nordic Semiconductor ASA
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
+
+menu "nRF-Temp (Nordic) temperature sensor driver"
+	depends on SOC_COMPATIBLE_NRF || DT_HAS_NORDIC_NRF_TEMP_ENABLED
 
 config TEMP_NRF5_FORCE_ALT
 	bool
@@ -12,7 +16,7 @@ config TEMP_NRF5_FORCE_ALT
 	  of the temperature sensor driver.
 
 config TEMP_NRF5
-	bool "nRF5 Temperature Sensor"
+	bool "nRF5-Temp (Nordic) temperature sensor driver"
 	default y
 	depends on DT_HAS_NORDIC_NRF_TEMP_ENABLED
 	depends on MULTITHREADING || TEMP_NRF5_FORCE_ALT
@@ -20,7 +24,7 @@ config TEMP_NRF5
 	  Enable driver for nRF5 temperature sensor.
 
 config TEMP_NRFS
-	bool "nRF Temperature Sensor accessed via nrfs"
+	bool "nRF-Temp nrfs (Nordic) temperature sensor driver"
 	default y
 	depends on DT_HAS_NORDIC_NRF_TEMP_NRFS_ENABLED
 	depends on NRFS
@@ -36,3 +40,5 @@ thread_stack_size = 1024
 source "drivers/sensor/Kconfig.trigger_template"
 
 endif # TEMP_NRFS
+
+endmenu

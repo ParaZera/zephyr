@@ -1,10 +1,11 @@
 # Copyright (c) 2025 Andreas Klinger
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 # Vishay VEML6031 ambient light sensor driver options.
 
 config VEML6031
-	bool "Vishay VEML6031 ambient light sensor"
+	bool "VEML6031 (Vishay) ambient light sensor driver"
 	default y
 	depends on DT_HAS_VISHAY_VEML6031_ENABLED
 	select I2C

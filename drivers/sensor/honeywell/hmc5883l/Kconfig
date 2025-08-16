@@ -1,8 +1,9 @@
 # Copyright (c) 2016 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig HMC5883L
-	bool "HMC5883L magnetometer"
+	bool "HMC5883L (Honeywell) magnetometer sensor driver"
 	default y
 	depends on DT_HAS_HONEYWELL_HMC5883L_ENABLED
 	select I2C

@@ -1,10 +1,11 @@
 # NXP Kinetis temperature sensor configuration options
 
 # Copyright (c) 2020 Vestas Wind Systems A/S
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config TEMP_KINETIS
-	bool "NXP Kinetis Temperature Sensor"
+menuconfig TEMP_KINETIS
+	bool "Kinetis (NXP) temperature sensor driver"
 	default y
 	depends on DT_HAS_NXP_KINETIS_TEMPERATURE_ENABLED
 	select ADC

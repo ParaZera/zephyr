@@ -1,10 +1,11 @@
 # NPCX tachometer sensor configuration options
 
 # Copyright (c) 2021 Nuvoton Technology Corporation.
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config TACH_NPCX
-	bool "Nuvoton NPCX Tachometer sensor"
+	bool "NPCX-Tach (Nuvoton) tachometer sensor driver"
 	default y
 	depends on DT_HAS_NUVOTON_NPCX_TACH_ENABLED
 	depends on SOC_FAMILY_NPCX

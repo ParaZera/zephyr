@@ -1,16 +1,17 @@
 # HS400X temperature and humidity sensor
 
 # Copyright (c) 2024 Renesas Electronics Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config HS400X
-	bool "HS400x sensor"
+menuconfig HS400x
+	bool "HS400X (Renesas) temperature, humidity sensor driver"
 	default y
 	depends on DT_HAS_RENESAS_HS400X_ENABLED
 	help
 	  Enable driver for HS400x temperature and humidity sensors.
 
-if HS400X
+if HS400x
 
 config HS400X_CRC
 	bool "HS400X CRC check"

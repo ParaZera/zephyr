@@ -1,10 +1,11 @@
 # BMM150 Geomagnetic sensor configuration options
 
 # Copyright (c) 2017 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig BMM150
-	bool "BMM150 I2C Geomagnetic Chip"
+	bool "BMM150 (Bosch) geomagnetic sensor driver"
 	default y
 	depends on DT_HAS_BOSCH_BMM150_ENABLED
 	select I2C

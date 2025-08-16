@@ -2,11 +2,12 @@
 #
 # Copyright (c) 2022 Intel Corporation
 # Copyright (c) 2024 Croxel Inc.
+# Copyright The Zephyr Project Contributors
 #
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig ICM4268X
-	bool "ICM4268X Six-Axis Motion Tracking Device"
+	bool "ICM4268X (TDK) six-axis motion tracking sensor driver"
 	default y
 	depends on DT_HAS_INVENSENSE_ICM4268X_ENABLED
 	select SPI

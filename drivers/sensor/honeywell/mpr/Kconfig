@@ -1,10 +1,11 @@
 # MPR pressure sensor configuration options
 
 # Copyright (c) 2020 Sven Herrmann
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig MPR
-	bool "MPR pressure sensor"
+	bool "MPR (Honeywell) pressure sensor driver"
 	default y
 	depends on DT_HAS_HONEYWELL_MPR_ENABLED
 	select I2C

@@ -1,8 +1,9 @@
 # Copyright (c) 2025, Kickmaker
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config AD2S1210
-	bool "AD2S1210 10-bit to 16-bit resolution tracking resolver-to-digital converter"
+	bool "AD2S1210 (ADI) resolver-to-digital sensor driver"
 	default y
 	depends on DT_HAS_ADI_AD2S1210_ENABLED
 	select GPIO

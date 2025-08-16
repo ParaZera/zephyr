@@ -1,9 +1,10 @@
 # Copyright (c) 2024 Florian Weber <Florian.Weber@live.de>
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 
 config MLX90394
-	bool "MLX90394 Magnetometer"
+	bool "MLX90394 (Melexis) magnetometer sensor driver"
 	default y
 	depends on DT_HAS_MELEXIS_MLX90394_ENABLED
 	select I2C

@@ -1,10 +1,11 @@
 # Lite-On LTR-329 light sensor driver configuration
 
 # Copyright (c) 2025 Konrad Sikora
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config LTR329
-	bool "LiteOn LTR-329 Ambient light sensor support"
+	bool "LTR-329 (LiteOn) ambient light sensor driver"
 	default y
 	depends on DT_HAS_LITEON_LTR329_ENABLED
 	select I2C

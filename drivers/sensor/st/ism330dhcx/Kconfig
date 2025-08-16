@@ -1,10 +1,11 @@
 # ST Microelectronics ISM330DHCX 6-axis IMU sensor driver
 
 # Copyright (c) 2020 STMicroelectronics
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig ISM330DHCX
-	bool "ISM330DHCX I2C/SPI accelerometer and gyroscope Chip"
+	bool "ISM330DHCX (ST) accelerometer, gyroscope sensor driver"
 	default y
 	depends on DT_HAS_ST_ISM330DHCX_ENABLED
 	depends on ZEPHYR_HAL_ST_MODULE

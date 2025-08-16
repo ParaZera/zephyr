@@ -1,8 +1,9 @@
 # Copyright (c) 2023 Andriy Gelman <andriy.gelman@gmail.com>
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config XMC4XXX_TEMP
-	bool "XMC4XXX Temperature Sensor"
+menuconfig XMC4XXX_TEMP
+	bool "XMC4XXX_TEMP (Infineon) temperature sensor driver"
 	default y
 	depends on DT_HAS_INFINEON_XMC4XXX_TEMP_ENABLED
 	help

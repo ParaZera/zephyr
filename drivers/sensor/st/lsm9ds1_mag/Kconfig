@@ -1,8 +1,9 @@
 # Copyright (c) 2024 Bootlin
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config LSM9DS1_MAG
-	bool "LSM9DS1 I2C magnetometer chip"
+	bool "LSM9DS1 (ST) magnetometer sensor driver"
 	default y
 	depends on DT_HAS_ST_LSM9DS1_MAG_ENABLED
 	select I2C

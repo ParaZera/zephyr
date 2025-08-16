@@ -1,10 +1,11 @@
 # MAX31855 cold-junction compensated thermocouple-to-digital converter configuration options
 
 # Copyright (c) 2020 Christian Hirsch
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config MAX31855
-	bool "MAX31855 sensor"
+	bool "MAX31855 (Maxim) thermocouple sensor driver"
 	default y
 	depends on DT_HAS_MAXIM_MAX31855_ENABLED
 	select SPI

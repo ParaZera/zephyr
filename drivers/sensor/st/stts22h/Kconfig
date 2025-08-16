@@ -1,10 +1,11 @@
 # ST Microelectronics STTS22H temperature sensor
 
 # Copyright (c) 2024 STMicroelectronics
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig STTS22H
-	bool "STTS22H temperature sensor"
+	bool "STTS22H (ST) temperature sensor driver"
 	default y
 	depends on DT_HAS_ST_STTS22H_ENABLED
 	depends on ZEPHYR_HAL_ST_MODULE

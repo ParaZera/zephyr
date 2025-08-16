@@ -1,10 +1,11 @@
 # Copyright (c) 2023 Balthazar Deliers
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 # AOSONG AGS10 TVOC sensor driver options.
 
 config AGS10
-	bool "AOSONG AGS10 TVOC sensor"
+	bool "AGS10 (Aosong) TVOC sensor driver"
 	default y
 	depends on DT_HAS_AOSONG_AGS10_ENABLED
 	select I2C

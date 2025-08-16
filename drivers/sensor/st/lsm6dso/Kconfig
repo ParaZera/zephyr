@@ -1,10 +1,11 @@
 # ST Microelectronics LSM6DSO 6-axis IMU sensor driver
 
 # Copyright (c) 2019 STMicroelectronics
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig LSM6DSO
-	bool "LSM6DSO I2C/SPI accelerometer and gyroscope Chip"
+	bool "LSM6DSO (ST) accelerometer, gyroscope sensor driver"
 	default y
 	depends on DT_HAS_ST_LSM6DSO_ENABLED || DT_HAS_ST_LSM6DSO32_ENABLED
 	depends on ZEPHYR_HAL_ST_MODULE

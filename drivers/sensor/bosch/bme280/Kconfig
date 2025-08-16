@@ -3,10 +3,11 @@
 # Copyright (c) 2016 Intel Corporation
 # Copyright (c) 2017 IpTronix S.r.l.
 # Copyright (c) 2024 Croxel Inc.
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig BME280
-	bool "BME280/BMP280 sensor"
+	bool "BME280 (Bosch) humidity sensor driver"
 	default y
 	depends on DT_HAS_BOSCH_BME280_ENABLED
 	select I2C if $(dt_compat_on_bus,$(DT_COMPAT_BOSCH_BME280),i2c)

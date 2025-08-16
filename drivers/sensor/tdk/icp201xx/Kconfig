@@ -1,11 +1,12 @@
 # ICP201xx High Accuracy, Low Power, Barometric Pressure and Temperature Sensor IC
 #
 # Copyright (c) 2025 TDK Invensense
+# Copyright The Zephyr Project Contributors
 #
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig ICP201XX
-	bool "ICP201xx Barometric Pressure and Temperature Sensor"
+	bool "ICP201XX (TDK) barometric pressure and temperature sensor driver"
 	default y
 	depends on DT_HAS_INVENSENSE_ICP201XX_ENABLED
 	select I2C if $(dt_compat_on_bus,$(DT_COMPAT_INVENSENSE_ICP201XX),i2c)

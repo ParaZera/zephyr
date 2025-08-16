@@ -1,10 +1,11 @@
 # Microchip mec15xx tachometer sensor configuration options
 
 # Copyright (c) 2020 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config TACH_XEC
-	bool "XEC Tachometer sensor"
+menuconfig TACH_XEC
+	bool "XEC-Tach (Microchip) tachometer sensor driver"
 	default y
 	depends on DT_HAS_MICROCHIP_XEC_TACH_ENABLED
 	depends on SOC_FAMILY_MICROCHIP_MEC

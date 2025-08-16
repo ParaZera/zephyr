@@ -1,10 +1,11 @@
 # OPT3001 light sensor configuration options
 
 # Copyright (c) 2019 Actinius
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config OPT3001
-	bool "OPT3001 Light Sensor"
+menuconfig OPT3001
+	bool "OPT3001 (TI) light sensor driver"
 	default y
 	depends on DT_HAS_TI_OPT3001_ENABLED
 	select I2C

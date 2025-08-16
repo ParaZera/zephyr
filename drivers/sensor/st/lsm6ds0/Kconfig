@@ -2,10 +2,11 @@
 # options
 
 # Copyright (c) 2016 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig LSM6DS0
-	bool "LSM6DS0 I2C accelerometer and gyroscope Chip"
+	bool "LSM6DS0 (ST) accelerometer, gyroscope sensor driver"
 	default y
 	depends on DT_HAS_ST_LSM6DS0_ENABLED
 	select I2C

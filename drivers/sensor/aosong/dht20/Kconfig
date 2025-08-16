@@ -2,10 +2,11 @@
 # This driver can also be used for AHT20 or AM2301B which seem to be the same sensor
 
 # Copyright (c) 2024 Nathan Olff
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config DHT20
-	bool "DHT20 / AHT20 / AM2301B Temperature and Humidity Sensor"
+menuconfig DHT20
+	bool "DHT20, AHT20, AM2301B (Aosong) temperature/humidity sensor driver"
 	default y
 	depends on DT_HAS_AOSONG_DHT20_ENABLED \
 		|| DT_HAS_AOSONG_AHT20_ENABLED \

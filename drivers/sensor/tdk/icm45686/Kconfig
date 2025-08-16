@@ -1,9 +1,10 @@
 # Copyright (c) 2025 Croxel Inc.
 # Copyright (c) 2025 CogniPilot Foundation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig ICM45686
-	bool "ICM45686 High-precision 6-Axis Motion Tracking Device"
+	bool "ICM45686 (TDK) high-precision 6-axis motion tracking sensor driver"
 	default y
 	depends on DT_HAS_INVENSENSE_ICM45686_ENABLED
 	select SPI if $(dt_compat_on_bus,$(DT_COMPAT_INVENSENSE_ICM45686),spi)

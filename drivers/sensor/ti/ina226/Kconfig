@@ -1,15 +1,18 @@
 # INA226 Bidirectional Current/Power Monitor
 
 # Copyright 2024 NXP
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config INA226
-	bool "INA226 Current/Power Monitor"
+menuconfig INA226
+	bool "INA226 (TI) current/power monitor sensor driver"
 	default y
 	depends on DT_HAS_TI_INA226_ENABLED
 	select I2C
 	help
 	  Enable driver for INA226 Bidirectional Current/Power Monitor.
+
+if INA226
 
 config INA226_VSHUNT
 	bool "INA226 VShunt Measurement Enable"
@@ -24,3 +27,5 @@ config INA226_VSHUNT
 	  Note that enabling this option requires an extra I2C read when the
 	  SENSOR_CHAN_ALL is selected. Hence, only enable this option if the
 	  shunt voltage measurement is required.
+
+endif # INA226

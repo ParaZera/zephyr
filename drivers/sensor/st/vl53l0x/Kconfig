@@ -1,10 +1,11 @@
 # VL53L0X time of flight sensor configuration options
 
 # Copyright (c) 2017 STMicroelectronics
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig VL53L0X
-	bool "VL53L0X time of flight sensor"
+	bool "VL53L0X (ST) time of flight sensor driver"
 	default y
 	depends on DT_HAS_ST_VL53L0X_ENABLED
 	depends on ZEPHYR_HAL_ST_MODULE

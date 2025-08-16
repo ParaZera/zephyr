@@ -1,10 +1,11 @@
 # ST Microelectronics LIS2DUX12 3-axis accelerometer driver
 
 # Copyright (c) 2024 STMicroelectronics
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig LIS2DUX12
-	bool "LIS2DUX12 I2C/SPI accelerometer sensor driver"
+	bool "LIS2DUX12 (ST) accelerometer sensor driver"
 	default y
 	depends on DT_HAS_ST_LIS2DUX12_ENABLED || DT_HAS_ST_LIS2DUXS12_ENABLED
 	depends on ZEPHYR_HAL_ST_MODULE

@@ -1,10 +1,11 @@
 # NXP temperature monitor (TEMPMON)
 
 # Copyright (c) 2023 Centralp
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config NXP_TEMPMON
-	bool "NXP temperature monitor (TEMPMON)"
+	bool "NXP Tempmon (NXP) temperature monitor sensor driver"
 	default y
 	depends on DT_HAS_NXP_TEMPMON_ENABLED
 	help

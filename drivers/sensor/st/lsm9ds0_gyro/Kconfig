@@ -1,10 +1,11 @@
 # LSM9DS0 gyroscope sensor configuration options
 
 # Copyright (c) 2016 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig LSM9DS0_GYRO
-	bool "LSM9DS0 I2C gyroscope Chip"
+	bool "LSM9DS0 (ST) gyroscope sensor driver"
 	default y
 	depends on DT_HAS_ST_LSM9DS0_GYRO_ENABLED
 	select I2C

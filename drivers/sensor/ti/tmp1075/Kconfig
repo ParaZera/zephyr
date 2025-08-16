@@ -1,10 +1,11 @@
 # Copyright (c) 2024 Arrow Electronics.
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 # TMP1075 temperature sensor configuration options
 
 menuconfig TMP1075
-	bool "TMP1075 Temperature Sensor"
+	bool "TMP1075 (TI) temperature sensor driver"
 	default y
 	depends on DT_HAS_TI_TMP1075_ENABLED
 	select I2C

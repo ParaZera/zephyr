@@ -1,0 +1,8 @@
+# Copyright (c) 2025 Tim Schrader <tim.schrader92@gmail.com>
+# SPDX-License-Identifier: Apache-2.0
+
+# zephyr-keep-sorted-start
+source "drivers/sensor/avago/apds9253/Kconfig"
+source "drivers/sensor/avago/apds9306/Kconfig"
+source "drivers/sensor/avago/apds9960/Kconfig"
+# zephyr-keep-sorted-stop

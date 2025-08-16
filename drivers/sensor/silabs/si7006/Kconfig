@@ -1,8 +1,9 @@
 # Copyright (c) 2019 Electronut Labs
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config SI7006
-	bool "SHT21, Si7006, and HTU21D Humidity and Temperature Sensors"
+	bool "SI7006 (Silabs) humidity and temperature sensor driver"
 	default y
 	depends on DT_HAS_SILABS_SI7006_ENABLED || DT_HAS_SENSIRION_SHT21_ENABLED
 	select I2C

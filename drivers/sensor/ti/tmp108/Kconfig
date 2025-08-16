@@ -2,10 +2,11 @@
 
 # Copyright (c) 2021 Jimmy Johnson <catch22@fastmail.net>
 # Copyright (c) 2022 T-Mobile USA, Inc.
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig TMP108
-	bool "TMP108 Temperature Sensor"
+	bool "TMP108 (TI) temperature sensor driver"
 	default y
 	depends on DT_HAS_TI_TMP108_ENABLED || DT_HAS_AMS_AS6212_ENABLED
 	select I2C

@@ -1,0 +1,13 @@
+# Copyright (c) 2021 Leica Geosystems AG
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig SBS_GAUGE
+	bool "Fuel Gauge (SBS) smart battery fuel gauge sensor driver"
+	default y
+	depends on DT_HAS_SBS_SBS_GAUGE_ENABLED
+	select I2C
+	help
+	  Enable I2C-based/SMBus-based driver for a Smart Battery Fuel Gauge.
+
+# Maintain access to emul_sbs_gauge.
+source "drivers/fuel_gauge/sbs_gauge/Kconfig.emul_sbs_gauge"

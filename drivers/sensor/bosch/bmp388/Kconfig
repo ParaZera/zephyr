@@ -1,8 +1,9 @@
 # Copyright (c) 2020 Facebook, Inc. and its affiliates
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig BMP388
-	bool "Bosch BMP388 pressure sensor"
+	bool "BMP388 (Bosch) pressure sensor driver"
 	default y
 	depends on DT_HAS_BOSCH_BMP388_ENABLED || DT_HAS_BOSCH_BMP390_ENABLED
 	select I2C if $(dt_compat_on_bus,$(DT_COMPAT_BOSCH_BMP388),i2c) || \

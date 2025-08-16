@@ -2,10 +2,11 @@
 
 # Copyright (c) 2023 STMicroelectronics
 # Copyright (c) 2023 PHYTEC Messtechnik GmbH
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig LPS2XDF
-	bool "LPS2xDF pressure and temperature"
+	bool "LPS2xDF (ST) pressure, temperature sensor driver"
 	default y
 	depends on DT_HAS_ST_LPS22DF_ENABLED || DT_HAS_ST_LPS28DFW_ENABLED ||\
 		   DT_HAS_ST_ILPS22QS_ENABLED

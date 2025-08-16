@@ -1,10 +1,11 @@
 # PAJ7620 gesture sensor configuration options
 
 # Copyright (c) 2025 Paul Timke <ptimkec@live.com>
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig PAJ7620
-	bool "PAJ7620 gesture sensor driver"
+	bool "PAJ7620 (Pixart) gesture sensor driver"
 	default y
 	depends on DT_HAS_PIXART_PAJ7620_ENABLED
 	select I2C

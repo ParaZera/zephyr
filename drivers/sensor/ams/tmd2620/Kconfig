@@ -1,8 +1,9 @@
 # Copyright (c) 2023 PHYTEC Messtechnik GmbH
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig TMD2620
-	bool "OSRAM-AMS TMD2620 Proxmimity Sensor"
+	bool "TMD2620 (AMS) proximity sensor driver"
 	default y
 	depends on DT_HAS_AMS_TMD2620_ENABLED
 	select I2C

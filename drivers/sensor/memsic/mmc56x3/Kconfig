@@ -1,9 +1,10 @@
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 #
 # Copyright (c) 2024 Intel
 
 config MMC56X3
-	bool "Memsic MMC56X3 magnetometer driver"
+	bool "MMC56X3 (Memsic) magnetometer sensor driver"
 	default y
 	depends on DT_HAS_MEMSIC_MMC56X3_ENABLED
 	select I2C if $(dt_compat_on_bus,$(DT_COMPAT_MEMSIC_MMC56X3),i2c)

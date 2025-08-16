@@ -1,10 +1,11 @@
 # NXP MCUX low power comparator (LPCMP) configuration options
 
 # Copyright 2024 NXP
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config MCUX_LPCMP
-	bool "NXP LPCMP driver"
+menuconfig MCUX_LPCMP
+	bool "MCUX-LPCMP (NXP) low power comparator sensor driver"
 	default y
 	depends on DT_HAS_NXP_LPCMP_ENABLED
 	select PINCTRL

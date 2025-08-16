@@ -2,11 +2,12 @@
 
 # Copyright (c) 2018 Bosch Sensortec GmbH
 # Copyright (c) 2022, Leonard Pollak
+# Copyright The Zephyr Project Contributors
 #
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig BME680
-	bool "BME680 sensor"
+	bool "BME680 (Bosch) environmental sensor driver"
 	default y
 	depends on DT_HAS_BOSCH_BME680_ENABLED
 	select I2C if $(dt_compat_on_bus,$(DT_COMPAT_BOSCH_BME680),i2c)

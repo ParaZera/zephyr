@@ -1,10 +1,11 @@
 # MS5607 pressure sensor configuration options
 
 # Copyright (c) 2019 Thomas Schmid <tom@lfence.de>
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig MS5607
-	bool "MS5607 pressure and temperature sensor"
+	bool "MS5607 (Meas) pressure/temperature sensor driver"
 	default y
 	depends on DT_HAS_MEAS_MS5607_ENABLED
 	select I2C if $(dt_compat_on_bus,$(DT_COMPAT_MEAS_MS5607),i2c)

@@ -1,10 +1,11 @@
 # FDC2X1X Capacitance-to-Digital Converter configuration options
 
 # Copyright (c) 2020 arithmetics.io
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig FDC2X1X
-	bool "FDC2X1X Capacitance-to-Digital Converter"
+	bool "FDC2X1X (TI) capacitance-to-digital converter sensor driver"
 	default y
 	depends on DT_HAS_TI_FDC2X1X_ENABLED
 	depends on FULL_LIBC_SUPPORTED || EXTERNAL_LIBC

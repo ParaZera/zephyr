@@ -1,10 +1,11 @@
 # ISL29035 light sensor configuration options
 
 # Copyright (c) 2016 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig ISL29035
-	bool "ISL29035 light sensor"
+	bool "ISL29035 (Renesas) light sensor driver"
 	default y
 	depends on DT_HAS_ISIL_ISL29035_ENABLED
 	select I2C

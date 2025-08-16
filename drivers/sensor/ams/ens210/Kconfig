@@ -1,10 +1,11 @@
 # ENS210 Digital Temperature and Humidity sensor configuration options
 
 # Copyright (c) 2018 Alexander Wachter.
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig ENS210
-	bool "ENS210 Digital Temperature and Humidity sensor"
+	bool "ENS210 (AMS) temperature/humidity sensor driver"
 	default y
 	depends on DT_HAS_AMS_ENS210_ENABLED
 	select I2C

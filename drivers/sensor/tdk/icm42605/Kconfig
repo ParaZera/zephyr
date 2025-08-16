@@ -1,10 +1,11 @@
 # ICM42605 Six-Axis Motion Tracking device configuration options
 
 # Copyright (c) 2020 TDK Invensense
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig ICM42605
-	bool "ICM42605 Six-Axis Motion Tracking Device"
+	bool "ICM42605 (TDK) six-axis motion tracking sensor driver"
 	default y
 	depends on DT_HAS_INVENSENSE_ICM42605_ENABLED
 	select SPI

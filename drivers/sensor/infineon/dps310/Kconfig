@@ -1,10 +1,11 @@
 # DPS310 temperature and pressure sensor configuration options
 
 # Copyright (c) 2019 Infineon Technologies AG
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig DPS310
-	bool "DPS310 sensor"
+	bool "DPS310 (Infineon) temperature/pressure sensor driver"
 	default y
 	depends on DT_HAS_INFINEON_DPS310_ENABLED
 	select I2C

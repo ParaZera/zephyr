@@ -1,10 +1,11 @@
 # ST Microelectronics IIS2ICLX 2-axis accelerometer sensor driver
 
 # Copyright (c) 2020 STMicroelectronics
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig IIS2ICLX
-	bool "IIS2ICLX I2C/SPI accelerometer Chip"
+	bool "IIS2ICLX (ST) accelerometer sensor driver"
 	default y
 	depends on DT_HAS_ST_IIS2ICLX_ENABLED
 	depends on ZEPHYR_HAL_ST_MODULE

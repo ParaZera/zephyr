@@ -1,10 +1,11 @@
 # I3G4250D three-axis digital output gyroscope
 
 # Copyright (c) 2021 Jonathan Hahn
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config I3G4250D
-	bool "I3G4250D three-axis digital output gyroscope"
+	bool "I3G4250D (ST) gyroscope sensor driver"
 	default y
 	depends on DT_HAS_ST_I3G4250D_ENABLED
 	depends on ZEPHYR_HAL_ST_MODULE

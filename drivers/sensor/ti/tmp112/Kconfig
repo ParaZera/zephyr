@@ -1,10 +1,11 @@
 # TMP112 temperature sensor configuration options
 
 # Copyright (c) 2016 Firmwave
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config TMP112
-	bool "TMP112 Temperature Sensor"
+menuconfig TMP112
+	bool "TMP112 (TI) temperature sensor driver"
 	default y
 	depends on DT_HAS_TI_TMP112_ENABLED
 	select I2C

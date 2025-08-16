@@ -1,10 +1,11 @@
 # ADT7420 temperature sensor configuration options
 
 # Copyright (c) 2018 Analog Devices Inc.
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig ADT7420
-	bool "ADT7420 Temperature Sensor"
+	bool "ADT7420 (ADI) temperature sensor driver"
 	default y
 	depends on DT_HAS_ADI_ADT7420_ENABLED
 	select I2C

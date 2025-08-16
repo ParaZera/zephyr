@@ -1,10 +1,11 @@
 # LSM9DS0 accelerometer, magnetometer and temperature configuration options
 
 # Copyright (c) 2016 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig LSM9DS0_MFD
-	bool "LSM9DS0 I2C accelerometer, magnetometer and temperature sensor chip"
+	bool "LSM9DS0 (ST) accelerometer, magnetometer, temperature sensor driver"
 	default y
 	depends on DT_HAS_ST_LSM9DS0_MFD_ENABLED
 	select I2C

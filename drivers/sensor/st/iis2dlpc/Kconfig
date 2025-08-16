@@ -1,10 +1,11 @@
 # ST Microelectronics IIS2DLPC 3-axis accelerometer driver
 
 # Copyright (c) 2020 STMicroelectronics
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig IIS2DLPC
-	bool "IIS2DLPC I2C/SPI accelerometer sensor driver"
+	bool "IIS2DLPC (ST) accelerometer sensor driver"
 	default y
 	depends on DT_HAS_ST_IIS2DLPC_ENABLED
 	depends on ZEPHYR_HAL_ST_MODULE

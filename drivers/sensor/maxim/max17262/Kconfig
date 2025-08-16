@@ -1,9 +1,10 @@
 # Copyright 2020 Matija Tudan
+# Copyright The Zephyr Project Contributors
 #
 # SPDX-License-Identifier: Apache-2.0
 
 config MAX17262
-	bool "MAX17262 Fuel Gauge"
+	bool "MAX17262 (Maxim) fuel gauge sensor driver"
 	default y
 	depends on DT_HAS_MAXIM_MAX17262_ENABLED
 	select I2C

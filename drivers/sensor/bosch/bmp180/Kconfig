@@ -1,8 +1,9 @@
 # Copyright (c) 2024 Chris Ruehl
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig BMP180
-	bool "Bosch BMP180 pressure sensor"
+	bool "BMP180 (Bosch) pressure sensor driver"
 	default y
 	depends on DT_HAS_BOSCH_BMP180_ENABLED
 	select I2C

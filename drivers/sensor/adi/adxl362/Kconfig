@@ -1,10 +1,11 @@
 # ADXL362 Three-Axis Digital Accelerometers
 
 # Copyright (c) 2017 IpTronix S.r.l.
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig ADXL362
-	bool "ADXL362 sensor"
+	bool "ADXL362 (ADI) accelerometer sensor driver"
 	default y
 	depends on DT_HAS_ADI_ADXL362_ENABLED
 	select SPI

@@ -1,8 +1,9 @@
 # Copyright (c) 2020 STMicroelectronics
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig IIS2MDC
-	bool "IIS2MDC Magnetometer"
+	bool "IIS2MDC (ST) magnetometer sensor driver"
 	default y
 	depends on DT_HAS_ST_IIS2MDC_ENABLED
 	depends on ZEPHYR_HAL_ST_MODULE

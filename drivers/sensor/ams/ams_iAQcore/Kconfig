@@ -1,10 +1,11 @@
 # iAQ-core Digital VOC sensor configuration options
 
 # Copyright (c) 2018 Alexander Wachter
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig AMS_IAQ_CORE
-	bool "iAQ-core Digital VOC sensor"
+	bool "iAQ-core (AMS) digital VOC sensor driver"
 	default y
 	depends on DT_HAS_AMS_IAQCORE_ENABLED
 	select I2C

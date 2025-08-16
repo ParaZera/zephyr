@@ -1,8 +1,9 @@
 # Copyright (c) 2016 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig LPS25HB
-	bool "LPS25HB pressure and temperature"
+	bool "LPS25HB (ST) pressure, temperature sensor driver"
 	default y
 	depends on DT_HAS_ST_LPS25HB_PRESS_ENABLED
 	select I2C

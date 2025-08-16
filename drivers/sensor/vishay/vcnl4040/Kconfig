@@ -1,10 +1,11 @@
 # VCNL4040 Proximity and Ambient Light Sensor configuration options
 
 # Copyright (c) 2020 Richard Osterloh
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig VCNL4040
-	bool "VCNL4040 Proximity and Ambient Light Sensor"
+	bool "VCNL4040 (Vishay) proximity and ambient light sensor driver"
 	default y
 	depends on DT_HAS_VISHAY_VCNL4040_ENABLED
 	select I2C

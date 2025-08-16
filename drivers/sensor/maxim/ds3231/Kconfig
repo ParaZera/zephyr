@@ -1,10 +1,11 @@
 # DS3231 temperature sensor configuration options
 
 # Copyright (c) 2024 Gergo Vari <work@gergovari.com>
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config SENSOR_DS3231
-	bool "DS3231 sensor"
+menuconfig SENSOR_DS3231
+	bool "DS3231 (Maxim) temperature sensor driver"
 	default y
 	depends on DT_HAS_MAXIM_DS3231_MFD_ENABLED
 	depends on DT_HAS_MAXIM_DS3231_SENSOR_ENABLED

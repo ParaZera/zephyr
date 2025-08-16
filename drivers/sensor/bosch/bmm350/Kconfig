@@ -1,11 +1,12 @@
 # BMM350 Geomagnetic sensor configuration options
 
 # Copyright (c) 2024 Bosch Sensortec GmbH
+# Copyright The Zephyr Project Contributors
 
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig BMM350
-	bool "BMM350 I2C Geomagnetic Chip"
+	bool "BMM350 (Bosch) geomagnetic sensor driver"
 	default y
 	depends on DT_HAS_BOSCH_BMM350_ENABLED
 	select I2C

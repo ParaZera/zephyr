@@ -1,10 +1,11 @@
 # BMC150 magnetometer sensor configuration options
 
 # Copyright (c) 2016 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig BMC150_MAGN
-	bool "BMC150_MAGN I2C Magnetometer Chip"
+	bool "BMC150 (Bosch) magnetometer sensor driver"
 	default y
 	depends on DT_HAS_BOSCH_BMC150_MAGN_ENABLED
 	select I2C

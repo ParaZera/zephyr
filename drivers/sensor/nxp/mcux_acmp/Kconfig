@@ -2,10 +2,11 @@
 
 # Copyright (c) 2020 Vestas Wind Systems A/S
 # Copyright 2024 NXP
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config SENSOR_MCUX_ACMP
-	bool "NXP MCUX Analog Comparator (ACMP)"
+menuconfig SENSOR_MCUX_ACMP
+	bool "MCUX-ACMP (NXP) analog comparator sensor driver"
 	default y
 	depends on DT_HAS_NXP_KINETIS_ACMP_ENABLED
 	select PINCTRL

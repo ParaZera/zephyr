@@ -1,9 +1,10 @@
 # Copyright (c) 2022, Valerio Setti <vsetti@baylibre.com>
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 #
 
 config QDEC_STM32
-	bool "STM32 QDEC driver"
+	bool "STM32-QDEC (ST) quadrature decoder sensor driver"
 	default y
 	depends on DT_HAS_ST_STM32_QDEC_ENABLED
 	select PINCTRL

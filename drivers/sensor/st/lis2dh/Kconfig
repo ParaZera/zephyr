@@ -1,10 +1,11 @@
 # LIS2DH Three Axis Accelerometer configuration options
 
 # Copyright (c) 2017 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig LIS2DH
-	bool "LIS2DH Three Axis Accelerometer"
+	bool "LIS2DH (ST) accelerometer sensor driver"
 	default y
 	depends on DT_HAS_ST_LIS2DH_ENABLED
 	select I2C if $(dt_compat_on_bus,$(DT_COMPAT_ST_LIS2DH),i2c)

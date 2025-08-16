@@ -1,10 +1,11 @@
 # INA219 Bidirectional Current/Power Monitor
 
 # Copyright (c) 2021 Leonard Pollak
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config INA219
-	bool "INA219 Current/Power Monitor"
+	bool "INA219 (TI) current/power monitor sensor driver"
 	default y
 	depends on DT_HAS_TI_INA219_ENABLED
 	select I2C

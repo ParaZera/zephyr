@@ -3,11 +3,12 @@
 # Copyright (c) 2023 Google LLC
 # Copyright (c) 2024 Croxel Inc.
 # Copyright (c) 2024 Cienet
+# Copyright The Zephyr Project Contributors
 #
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig BMA4XX
-	bool "BMA4XX 3-axis acceleration sensor"
+	bool "BMA4XX (Bosch) accelerometer sensor driver"
 	default y
 	depends on DT_HAS_BOSCH_BMA4XX_ENABLED
 	depends on SENSOR_ASYNC_API

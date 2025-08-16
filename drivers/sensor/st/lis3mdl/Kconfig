@@ -1,8 +1,9 @@
 # Copyright (c) 2016 Intel Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig LIS3MDL
-	bool "LIS3MDL magnetometer"
+	bool "LIS3MDL (ST) magnetometer sensor driver"
 	default y
 	depends on DT_HAS_ST_LIS3MDL_MAGN_ENABLED
 	select I2C

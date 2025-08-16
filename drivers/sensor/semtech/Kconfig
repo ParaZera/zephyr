@@ -1,0 +1,6 @@
+# Copyright (c) 2025 Tim Schrader <tim.schrader92@gmail.com>
+# SPDX-License-Identifier: Apache-2.0
+
+# zephyr-keep-sorted-start
+source "drivers/sensor/semtech/sx9500/Kconfig"
+# zephyr-keep-sorted-stop

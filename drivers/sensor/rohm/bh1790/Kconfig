@@ -1,10 +1,11 @@
 # BH1790 BH1790 Optical Sensor for Heart Rate Monitor IC sensor configuration options
 
 # Copyright(c) 2025 Magpie Embedded
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config BH1790
-	bool "BH1790 Optical Sensor for Heart Rate Monitor IC"
+	bool "BH1790 (Rohm) heart rate monitor sensor driver"
 	default y
 	depends on DT_HAS_ROHM_BH1790_ENABLED
 	select I2C

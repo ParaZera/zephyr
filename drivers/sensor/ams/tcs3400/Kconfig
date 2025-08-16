@@ -1,8 +1,9 @@
 # Copyright 2023 Google LLC
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config TCS3400
-	bool "TCS3400 Sensor"
+	bool "TCS3400 (AMS) color sensor driver"
 	default y
 	depends on DT_HAS_AMS_TCS3400_ENABLED
 	select I2C

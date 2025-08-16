@@ -1,10 +1,11 @@
 # ITE tachometer sensor configuration options
 
 # Copyright (c) 2021 ITE Technology Corporation.
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config TACH_IT8XXX2
-	bool "ITE it8xxx2 Tachometer sensor"
+	bool "it8xxx2 (ITE) Tachometer sensor driver"
 	default y
 	depends on DT_HAS_ITE_IT8XXX2_TACH_ENABLED
 	depends on SOC_IT8XXX2

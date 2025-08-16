@@ -1,10 +1,11 @@
 # ST Microelectronics LIS2DE12 3-axis accelerometer sensor driver
 
 # Copyright (c) 2024 STMicroelectronics
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig LIS2DE12
-	bool "LIS2DE12 I2C/SPI smartxl Chip"
+	bool "LIS2DE12 (ST) smartxl sensor driver"
 	default y
 	depends on DT_HAS_ST_LIS2DE12_ENABLED
 	depends on ZEPHYR_HAL_ST_MODULE

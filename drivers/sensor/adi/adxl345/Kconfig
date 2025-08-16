@@ -1,10 +1,11 @@
 # ADXL345, 3-Axis, +/-16g Digital Accelerometer
 
 # Copyright (c) 2020 Antmicro <www.antmicro.com>
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config ADXL345
-	bool "ADXL345 Three Axis accelerometer"
+menuconfig ADXL345
+	bool "ADXL345 (ADI) accelerometer sensor driver"
 	default y
 	depends on DT_HAS_ADI_ADXL345_ENABLED
 	select I2C if $(dt_compat_on_bus,$(DT_COMPAT_ADI_ADXL345),i2c)

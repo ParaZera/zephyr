@@ -2,10 +2,11 @@
 
 # Copyright (c) 2016 Intel Corporation
 # Copyright (c) 2024 Vogl Electronic GmbH
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig JC42
-	bool "JC42 temperature sensor"
+	bool "JC42 (JEDEC) temperature sensor driver"
 	default y
 	depends on DT_HAS_JEDEC_JC_42_4_TEMP_ENABLED
 	select I2C

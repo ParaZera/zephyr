@@ -1,8 +1,9 @@
 # Copyright (c) 2025 Würth Elektronik eiSos GmbH & Co. KG
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 menuconfig WSEN_PADS_2511020213301
-	bool "WSEN-PADS-2511020213301 absolute pressure and temperature sensor"
+	bool "WSEN-PADS-2511020213301 (WE) absolute pressure and temperature sensor driver"
 	default y
 	depends on DT_HAS_WE_WSEN_PADS_2511020213301_ENABLED
 	select I2C if $(dt_compat_on_bus,$(DT_COMPAT_WE_WSEN_PADS),i2c)

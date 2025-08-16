@@ -3,13 +3,14 @@
 # Copyright (c) 2024 TDK Invensense
 # Copyright (c) 2022 Esco Medical ApS
 # Copyright (c) 2020 TDK Invensense
+# Copyright The Zephyr Project Contributors
 #
 # SPDX-License-Identifier: Apache-2.0
 config TDK_APEX
 	bool
 
 menuconfig ICM42X70
-	bool "ICM42670-P/-S Six-Axis or ICM42370-P Three-Axis Motion Tracking Device"
+	bool "ICM42670-P/-S, ICM42370-P (TDK) six-axis/three-axis motion tracking sensor driver"
 	default y
 	depends on DT_HAS_INVENSENSE_ICM42670P_ENABLED \
 		|| DT_HAS_INVENSENSE_ICM42670S_ENABLED \

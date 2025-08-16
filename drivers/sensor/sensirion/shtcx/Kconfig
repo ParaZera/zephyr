@@ -1,10 +1,11 @@
 # SHTCX temperature and humidity sensor configuration options
 
 # Copyright (c) 2021 Thomas Stranger
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config SHTCX
-	bool "SHTCX: SHTC1 and SHTC3 Temperature and Humidity Sensor"
+	bool "SHTCX (Sensirion) temperature and humidity sensor driver"
 	default y
 	depends on DT_HAS_SENSIRION_SHTCX_ENABLED
 	select I2C

@@ -1,10 +1,11 @@
 # TMP11X temperature sensor configuration options
 
 # Copyright (c) 2019 Centaur Analytics, Inc
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config TMP11X
-	bool "TMP116, TMP117 and TMP119 Temperature Sensors"
+menuconfig TMP11X
+	bool "TMP116, TMP117, TMP119 (TI) temperature sensor driver"
 	default y
 	depends on DT_HAS_TI_TMP11X_ENABLED
 	select I2C

@@ -1,9 +1,10 @@
 # Copyright 2021 The Chromium OS Authors
+# Copyright The Zephyr Project Contributors
 #
 # SPDX-License-Identifier: Apache-2.0
 
-config INA23X
-	bool "INA23X Current and Power Monitor"
+menuconfig INA23X
+	bool "INA23X (TI) current and power monitor sensor driver"
 	default y
 	depends on DT_HAS_TI_INA230_ENABLED || DT_HAS_TI_INA236_ENABLED || DT_HAS_TI_INA237_ENABLED
 	select I2C

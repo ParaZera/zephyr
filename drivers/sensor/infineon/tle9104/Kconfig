@@ -1,8 +1,9 @@
 # Copyright (c) 2024 SILA Embedded Solutions GmbH
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config TLE9104_DIAGNOSTICS
-	bool "Output diagnostics of TLE9104"
+	bool "TLE9104-Diagnostics (Infineon) output diagnostics sensor driver"
 	default y
 	depends on DT_HAS_INFINEON_TLE9104_DIAGNOSTICS_ENABLED
 	help

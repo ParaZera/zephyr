@@ -1,10 +1,11 @@
 # TMP114 temperature sensor configuration options
 
 # Copyright (c) 2024 Fredrik Gihl
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config TMP114
-	bool "TMP114 Temperature Sensor"
+	bool "TMP114 (TI) temperature sensor driver"
 	default y
 	depends on DT_HAS_TI_TMP114_ENABLED
 	select I2C

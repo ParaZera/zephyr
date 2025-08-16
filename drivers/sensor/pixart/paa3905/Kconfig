@@ -1,9 +1,10 @@
 # Copyright (c) 2025 Croxel Inc.
 # Copyright (c) 2025 CogniPilot Foundation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-config PAA3905
-	bool "Optical Flow Sensor PAA3905"
+menuconfig PAA3905
+	bool "PAA3905 (Pixart) optical flow sensor driver"
 	default y
 	depends on DT_HAS_PIXART_PAA3905_ENABLED
 	select SPI

@@ -2,11 +2,12 @@
 #
 # Copyright (c) 2022, Maxmillion McLaughlin
 # Copyright (c) 2020, SER Consulting LLC / Steven Riedl
+# Copyright The Zephyr Project Contributors
 #
 # SPDX-License-Identifier: Apache-2.0
 
 config MCP9600
-	bool "MCP9600 i2c thermocouple temperature sensor"
+	bool "MCP9600 (Microchip) thermocouple temperature sensor driver"
 	default y
 	depends on DT_HAS_MICROCHIP_MCP9600_ENABLED
 	select I2C

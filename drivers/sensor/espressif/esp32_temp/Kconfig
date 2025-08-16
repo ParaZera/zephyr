@@ -1,8 +1,9 @@
 # Copyright (c) 2022 Espressif Systems (Shanghai) Co., Ltd.
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config ESP32_TEMP
-	bool "ESP32 Temperature Sensor"
+	bool "ESP32-Temp (Espressif) temperature sensor driver"
 	default y
 	depends on DT_HAS_ESPRESSIF_ESP32_TEMP_ENABLED
 	depends on !SOC_SERIES_ESP32

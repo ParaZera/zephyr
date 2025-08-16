@@ -1,8 +1,9 @@
 # Copyright (c) 2023 Gustavo Silva
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config TSL2561
-	bool "OSRAM-AMS TSL2561 light sensor"
+	bool "TSL2561 (AMS) light sensor driver"
 	default y
 	depends on DT_HAS_AMS_TSL2561_ENABLED
 	select I2C

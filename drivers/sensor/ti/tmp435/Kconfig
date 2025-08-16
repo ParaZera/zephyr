@@ -1,9 +1,10 @@
 # Copyright (c) 2024 Bittium Corporation
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 #
 
 config TMP435
-	bool "TMP435 temperature sensor"
+	bool "TMP435 (TI) temperature sensor driver"
 	default y
 	depends on DT_HAS_TI_TMP435_ENABLED
 	select I2C

@@ -1,10 +1,11 @@
 # STM32 battery sensor configuration options
 
 # Copyright (c) 2022 STMicroelectronics
+# Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
 config STM32_VBAT
-	bool "STM32 Vbat Sensor"
+	bool "STM32-VBAT (ST) battery voltage sensor driver"
 	default y
 	depends on DT_HAS_ST_STM32_VBAT_ENABLED
 	depends on DT_HAS_ST_STM32_ADC_ENABLED
