@@ -94,7 +94,7 @@ static inline int adxl362_get_reg(const struct device *dev, uint8_t *read_buf,
 				  register_address, read_buf, count);
 }
 
-#if defined(CONFIG_ADXL362_TRIGGER)
+#if defined(CONFIG_ADI_ADXL362_TRIGGER)
 static int adxl362_interrupt_config(const struct device *dev,
 				    uint8_t int1,
 				    uint8_t int2)
@@ -131,7 +131,7 @@ static int adxl362_software_reset(const struct device *dev)
 			       ADXL362_REG_SOFT_RESET, 1);
 }
 
-#if defined(CONFIG_ADXL362_ACCEL_ODR_RUNTIME)
+#if defined(CONFIG_ADI_ADXL362_ACCEL_ODR_RUNTIME)
 /*
  * Output data rate map with allowed frequencies:
  * freq = freq_int + freq_milli / 1000
@@ -172,9 +172,9 @@ static int adxl362_freq_to_odr_val(uint16_t freq_int, uint16_t freq_milli)
 
 	return -EINVAL;
 }
-#endif /* CONFIG_ADXL362_ACCEL_ODR_RUNTIME */
+#endif /* CONFIG_ADI_ADXL362_ACCEL_ODR_RUNTIME */
 
-#if defined(CONFIG_ADXL362_ACCEL_RANGE_RUNTIME)
+#if defined(CONFIG_ADI_ADXL362_ACCEL_RANGE_RUNTIME)
 static const struct adxl362_range {
 	uint16_t range;
 	uint8_t reg_val;
@@ -196,7 +196,7 @@ static int32_t adxl362_range_to_reg_val(uint16_t range)
 
 	return -EINVAL;
 }
-#endif /* CONFIG_ADXL362_ACCEL_RANGE_RUNTIME */
+#endif /* CONFIG_ADI_ADXL362_ACCEL_RANGE_RUNTIME */
 
 static int adxl362_set_range(const struct device *dev, uint8_t range)
 {
@@ -246,7 +246,7 @@ static int axl362_acc_config(const struct device *dev,
 			     const struct sensor_value *val)
 {
 	switch (attr) {
-#if defined(CONFIG_ADXL362_ACCEL_RANGE_RUNTIME)
+#if defined(CONFIG_ADI_ADXL362_ACCEL_RANGE_RUNTIME)
 	case SENSOR_ATTR_FULL_SCALE:
 	{
 		int range_reg;
@@ -261,7 +261,7 @@ static int axl362_acc_config(const struct device *dev,
 	}
 	break;
 #endif
-#if defined(CONFIG_ADXL362_ACCEL_ODR_RUNTIME)
+#if defined(CONFIG_ADI_ADXL362_ACCEL_ODR_RUNTIME)
 	case SENSOR_ATTR_SAMPLING_FREQUENCY:
 	{
 		int out_rate;
@@ -350,23 +350,23 @@ static int adxl362_attr_set(const struct device *dev,
 	return 0;
 }
 
-#ifdef CONFIG_ADXL362_STREAM
+#ifdef CONFIG_ADI_ADXL362_STREAM
 int adxl362_fifo_setup(const struct device *dev, uint8_t mode,
 			      uint16_t water_mark_lvl, uint8_t en_temp_read)
 #else
 static int adxl362_fifo_setup(const struct device *dev, uint8_t mode,
 			      uint16_t water_mark_lvl, uint8_t en_temp_read)
-#endif /* CONFIG_ADXL362_STREAM */
+#endif /* CONFIG_ADI_ADXL362_STREAM */
 {
 	uint8_t write_val;
 	int ret;
-#ifdef CONFIG_ADXL362_STREAM
+#ifdef CONFIG_ADI_ADXL362_STREAM
 	struct adxl362_data *data = (struct adxl362_data *)dev->data;
 
 	data->fifo_mode = mode;
 	data->water_mark_lvl = water_mark_lvl;
 	data->en_temp_read = en_temp_read;
-#endif /* CONFIG_ADXL362_STREAM */
+#endif /* CONFIG_ADI_ADXL362_STREAM */
 
 	write_val = ADXL362_FIFO_CTL_FIFO_MODE(mode) |
 		   (en_temp_read * ADXL362_FIFO_CTL_FIFO_TEMP);
@@ -563,9 +563,9 @@ int adxl362_rtio_fetch(const struct device *dev,
 		return ret;
 	}
 
-#ifdef CONFIG_ADXL362_STREAM
+#ifdef CONFIG_ADI_ADXL362_STREAM
 	sample_data->is_fifo = 0;
-#endif /*CONFIG_ADXL362_STREAM*/
+#endif /*CONFIG_ADI_ADXL362_STREAM*/
 
 	sample_data->acc_x = sys_le16_to_cpu(buf[0]);
 	sample_data->acc_y = sys_le16_to_cpu(buf[1]);
@@ -658,7 +658,7 @@ static DEVICE_API(sensor, adxl362_api_funcs) = {
 	.attr_set     = adxl362_attr_set,
 	.sample_fetch = adxl362_sample_fetch,
 	.channel_get  = adxl362_channel_get,
-#ifdef CONFIG_ADXL362_TRIGGER
+#ifdef CONFIG_ADI_ADXL362_TRIGGER
 	.trigger_set = adxl362_trigger_set,
 #endif
 #ifdef CONFIG_SENSOR_ASYNC_API
@@ -687,9 +687,9 @@ static int adxl362_chip_init(const struct device *dev)
 	 */
 	ret =
 	adxl362_setup_activity_detection(dev,
-					 CONFIG_ADXL362_ABS_REF_MODE,
-					 CONFIG_ADXL362_ACTIVITY_THRESHOLD,
-					 CONFIG_ADXL362_ACTIVITY_TIME);
+					 CONFIG_ADI_ADXL362_ABS_REF_MODE,
+					 CONFIG_ADI_ADXL362_ACTIVITY_THRESHOLD,
+					 CONFIG_ADI_ADXL362_ACTIVITY_TIME);
 	if (ret) {
 		return ret;
 	}
@@ -709,9 +709,9 @@ static int adxl362_chip_init(const struct device *dev)
 	 */
 	ret =
 	adxl362_setup_inactivity_detection(dev,
-					   CONFIG_ADXL362_ABS_REF_MODE,
-					   CONFIG_ADXL362_INACTIVITY_THRESHOLD,
-					   CONFIG_ADXL362_INACTIVITY_TIME);
+					   CONFIG_ADI_ADXL362_ABS_REF_MODE,
+					   CONFIG_ADI_ADXL362_INACTIVITY_THRESHOLD,
+					   CONFIG_ADI_ADXL362_INACTIVITY_TIME);
 	if (ret) {
 		return ret;
 	}
@@ -795,7 +795,7 @@ static int adxl362_init(const struct device *dev)
 		return -ENODEV;
 	}
 
-#if defined(CONFIG_ADXL362_TRIGGER)
+#if defined(CONFIG_ADI_ADXL362_TRIGGER)
 	if (config->interrupt.port) {
 		if (adxl362_init_interrupt(dev) < 0) {
 			LOG_ERR("Failed to initialize interrupt!");
@@ -822,9 +822,9 @@ static int adxl362_init(const struct device *dev)
 	RTIO_DEFINE(adxl362_rtio_ctx_##inst, 8, 8);
 
 #define ADXL362_DEFINE(inst)\
-	IF_ENABLED(CONFIG_ADXL362_STREAM, (ADXL362_RTIO_DEFINE(inst)));                          \
+	IF_ENABLED(CONFIG_ADI_ADXL362_STREAM, (ADXL362_RTIO_DEFINE(inst)));                          \
 	static struct adxl362_data adxl362_data_##inst = {			\
-	IF_ENABLED(CONFIG_ADXL362_STREAM, (.rtio_ctx = &adxl362_rtio_ctx_##inst,                  \
+	IF_ENABLED(CONFIG_ADI_ADXL362_STREAM, (.rtio_ctx = &adxl362_rtio_ctx_##inst,                  \
 				.iodev = &adxl362_iodev_##inst,)) \
 	};											\
 	static const struct adxl362_config adxl362_config_##inst = {				\
@@ -834,7 +834,7 @@ static int adxl362_init(const struct device *dev)
 			(DT_INST_PROP(inst, autosleep) * ADXL362_POWER_CTL_AUTOSLEEP),		\
 		.fifo_mode = DT_INST_PROP_OR(inst, fifo_mode, ADXL362_FIFO_DISABLE),	\
 		.water_mark_lvl = DT_INST_PROP_OR(inst, fifo_watermark, 0x80),	\
-		IF_ENABLED(CONFIG_ADXL362_TRIGGER,						\
+		IF_ENABLED(CONFIG_ADI_ADXL362_TRIGGER,						\
 			   (.interrupt = GPIO_DT_SPEC_INST_GET_OR(inst, int1_gpios, { 0 }),))	\
 	};											\
 												\

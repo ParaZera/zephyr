@@ -7,7 +7,7 @@
 #include "adxl362.h"
 #include <zephyr/sys/byteorder.h>
 
-#ifdef CONFIG_ADXL362_STREAM
+#ifdef CONFIG_ADI_ADXL362_STREAM
 
 /* (2^31 / 2^8(shift) */
 #define ADXL362_TEMP_QSCALE   8388608
@@ -214,7 +214,7 @@ static int adxl362_decode_stream(const uint8_t *buffer, struct sensor_chan_spec 
 	return count;
 }
 
-#endif /* CONFIG_ADXL362_STREAM */
+#endif /* CONFIG_ADI_ADXL362_STREAM */
 
 static int adxl362_decoder_get_frame_count(const uint8_t *buffer,
 					     struct sensor_chan_spec chan_spec,
@@ -226,11 +226,11 @@ static int adxl362_decoder_get_frame_count(const uint8_t *buffer,
 		return ret;
 	}
 
-#ifdef CONFIG_ADXL362_STREAM
+#ifdef CONFIG_ADI_ADXL362_STREAM
 	const struct adxl362_fifo_data *data = (const struct adxl362_fifo_data *)buffer;
 
 	if (!data->is_fifo) {
-#endif /* CONFIG_ADXL362_STREAM */
+#endif /* CONFIG_ADI_ADXL362_STREAM */
 		switch (chan_spec.chan_type) {
 		case SENSOR_CHAN_ACCEL_X:
 		case SENSOR_CHAN_ACCEL_Y:
@@ -243,7 +243,7 @@ static int adxl362_decoder_get_frame_count(const uint8_t *buffer,
 		default:
 			break;
 		}
-#ifdef CONFIG_ADXL362_STREAM
+#ifdef CONFIG_ADI_ADXL362_STREAM
 	} else {
 		if (data->fifo_byte_count == 0)	{
 			*frame_count = 0;
@@ -277,7 +277,7 @@ static int adxl362_decoder_get_frame_count(const uint8_t *buffer,
 			}
 		}
 	}
-#endif /* CONFIG_ADXL362_STREAM */
+#endif /* CONFIG_ADI_ADXL362_STREAM */
 
 	return ret;
 }
@@ -323,11 +323,11 @@ static int adxl362_decoder_decode(const uint8_t *buffer, struct sensor_chan_spec
 {
 	const struct adxl362_sample_data *data = (const struct adxl362_sample_data *)buffer;
 
-#ifdef CONFIG_ADXL362_STREAM
+#ifdef CONFIG_ADI_ADXL362_STREAM
 	if (data->is_fifo) {
 		return adxl362_decode_stream(buffer, chan_spec, fit, max_count, data_out);
 	}
-#endif /* CONFIG_ADXL362_STREAM */
+#endif /* CONFIG_ADI_ADXL362_STREAM */
 
 	return adxl362_decode_sample(data, chan_spec, fit, max_count, data_out);
 }
