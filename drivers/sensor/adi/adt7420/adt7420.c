@@ -148,7 +148,7 @@ static DEVICE_API(sensor, adt7420_driver_api) = {
 	.attr_set = adt7420_attr_set,
 	.sample_fetch = adt7420_sample_fetch,
 	.channel_get = adt7420_channel_get,
-#ifdef CONFIG_ADT7420_TRIGGER
+#ifdef CONFIG_ADI_ADT7420_TRIGGER
 	.trigger_set = adt7420_trigger_set,
 #endif
 };
@@ -176,18 +176,18 @@ static int adt7420_probe(const struct device *dev)
 	}
 
 	ret = i2c_reg_write_byte_dt(&cfg->i2c,
-				    ADT7420_REG_HIST, CONFIG_ADT7420_TEMP_HYST);
+				    ADT7420_REG_HIST, CONFIG_ADI_ADT7420_TEMP_HYST);
 	if (ret) {
 		return ret;
 	}
 	ret = adt7420_temp_reg_write(dev, ADT7420_REG_T_CRIT_MSB,
-				     (CONFIG_ADT7420_TEMP_CRIT * 1000000 /
+				     (CONFIG_ADI_ADT7420_TEMP_CRIT * 1000000 /
 				     ADT7420_TEMP_SCALE) << 1);
 	if (ret) {
 		return ret;
 	}
 
-#ifdef CONFIG_ADT7420_TRIGGER
+#ifdef CONFIG_ADI_ADT7420_TRIGGER
 	if (cfg->int_gpio.port) {
 		ret = adt7420_init_interrupt(dev);
 		if (ret < 0) {
@@ -218,7 +218,7 @@ static int adt7420_init(const struct device *dev)
 	static const struct adt7420_dev_config adt7420_config_##inst = {		\
 		.i2c = I2C_DT_SPEC_INST_GET(inst),					\
 											\
-	IF_ENABLED(CONFIG_ADT7420_TRIGGER,						\
+	IF_ENABLED(CONFIG_ADI_ADT7420_TRIGGER,						\
 		   (.int_gpio = GPIO_DT_SPEC_INST_GET_OR(inst, int_gpios, { 0 }),))	\
 	};										\
 											\

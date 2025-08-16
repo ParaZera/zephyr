@@ -314,7 +314,7 @@ int adxl362_init_interrupt(const struct device *dev);
 int adxl362_set_interrupt_mode(const struct device *dev, uint8_t mode);
 
 int adxl362_clear_data_ready(const struct device *dev);
-#endif /* CONFIG_ADT7420_TRIGGER */
+#endif /* CONFIG_ADXL362_TRIGGER */
 
 #ifdef CONFIG_SENSOR_ASYNC_API
 int adxl362_rtio_fetch(const struct device *dev,

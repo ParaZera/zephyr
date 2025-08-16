@@ -33,9 +33,9 @@ static void handle_int(const struct device *dev)
 
 	setup_int(dev, false);
 
-#if defined(CONFIG_ADT7420_TRIGGER_OWN_THREAD)
+#if defined(CONFIG_ADI_ADT7420_TRIGGER_OWN_THREAD)
 	k_sem_give(&drv_data->gpio_sem);
-#elif defined(CONFIG_ADT7420_TRIGGER_GLOBAL_THREAD)
+#elif defined(CONFIG_ADI_ADT7420_TRIGGER_GLOBAL_THREAD)
 	k_work_submit(&drv_data->work);
 #endif
 }
@@ -75,7 +75,7 @@ static void adt7420_gpio_callback(const struct device *dev,
 	handle_int(drv_data->dev);
 }
 
-#if defined(CONFIG_ADT7420_TRIGGER_OWN_THREAD)
+#if defined(CONFIG_ADI_ADT7420_TRIGGER_OWN_THREAD)
 static void adt7420_thread(void *p1, void *p2, void *p3)
 {
 	ARG_UNUSED(p2);
@@ -89,7 +89,7 @@ static void adt7420_thread(void *p1, void *p2, void *p3)
 	}
 }
 
-#elif defined(CONFIG_ADT7420_TRIGGER_GLOBAL_THREAD)
+#elif defined(CONFIG_ADI_ADT7420_TRIGGER_GLOBAL_THREAD)
 static void adt7420_work_cb(struct k_work *work)
 {
 	struct adt7420_data *drv_data =
@@ -162,17 +162,17 @@ int adt7420_init_interrupt(const struct device *dev)
 
 	drv_data->dev = dev;
 
-#if defined(CONFIG_ADT7420_TRIGGER_OWN_THREAD)
+#if defined(CONFIG_ADI_ADT7420_TRIGGER_OWN_THREAD)
 	k_sem_init(&drv_data->gpio_sem, 0, K_SEM_MAX_LIMIT);
 
 	k_thread_create(&drv_data->thread, drv_data->thread_stack,
-			CONFIG_ADT7420_THREAD_STACK_SIZE,
+			CONFIG_ADI_ADT7420_THREAD_STACK_SIZE,
 			adt7420_thread, drv_data,
-			NULL, NULL, K_PRIO_COOP(CONFIG_ADT7420_THREAD_PRIORITY),
+			NULL, NULL, K_PRIO_COOP(CONFIG_ADI_ADT7420_THREAD_PRIORITY),
 			0, K_NO_WAIT);
 
 	k_thread_name_set(&drv_data->thread, dev->name);
-#elif defined(CONFIG_ADT7420_TRIGGER_GLOBAL_THREAD)
+#elif defined(CONFIG_ADI_ADT7420_TRIGGER_GLOBAL_THREAD)
 	drv_data->work.handler = adt7420_work_cb;
 #endif
 

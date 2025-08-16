@@ -5,7 +5,7 @@
 add_subdirectory_ifdef(CONFIG_ADI_AD2S1210 ad2s1210)
 add_subdirectory_ifdef(CONFIG_ADI_ADLTC2990 adltc2990)
 add_subdirectory_ifdef(CONFIG_ADI_ADT7310 adt7310)
-add_subdirectory_ifdef(CONFIG_ADT7420 adt7420)
+add_subdirectory_ifdef(CONFIG_ADI_ADT7420 adt7420)
 add_subdirectory_ifdef(CONFIG_ADXL345 adxl345)
 add_subdirectory_ifdef(CONFIG_ADXL362 adxl362)
 add_subdirectory_ifdef(CONFIG_ADXL367 adxl367)

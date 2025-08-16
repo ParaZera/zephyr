@@ -60,7 +60,7 @@
 
 struct adt7420_data {
 	int16_t sample;
-#ifdef CONFIG_ADT7420_TRIGGER
+#ifdef CONFIG_ADI_ADT7420_TRIGGER
 	struct gpio_callback gpio_cb;
 
 	sensor_trigger_handler_t th_handler;
@@ -68,31 +68,31 @@ struct adt7420_data {
 
 	const struct device *dev;
 
-#if defined(CONFIG_ADT7420_TRIGGER_OWN_THREAD)
-	K_KERNEL_STACK_MEMBER(thread_stack, CONFIG_ADT7420_THREAD_STACK_SIZE);
+#if defined(CONFIG_ADI_ADT7420_TRIGGER_OWN_THREAD)
+	K_KERNEL_STACK_MEMBER(thread_stack, CONFIG_ADI_ADT7420_THREAD_STACK_SIZE);
 	struct k_sem gpio_sem;
 	struct k_thread thread;
-#elif defined(CONFIG_ADT7420_TRIGGER_GLOBAL_THREAD)
+#elif defined(CONFIG_ADI_ADT7420_TRIGGER_GLOBAL_THREAD)
 	struct k_work work;
 #endif
-#endif /* CONFIG_ADT7420_TRIGGER */
+#endif /* CONFIG_ADI_ADT7420_TRIGGER */
 
 };
 
 struct adt7420_dev_config {
 	struct i2c_dt_spec i2c;
-#ifdef CONFIG_ADT7420_TRIGGER
+#ifdef CONFIG_ADI_ADT7420_TRIGGER
 	struct gpio_dt_spec int_gpio;
 #endif
 };
 
-#ifdef CONFIG_ADT7420_TRIGGER
+#ifdef CONFIG_ADI_ADT7420_TRIGGER
 int adt7420_trigger_set(const struct device *dev,
 			const struct sensor_trigger *trig,
 			sensor_trigger_handler_t handler);
 
 int adt7420_init_interrupt(const struct device *dev);
-#endif /* CONFIG_ADT7420_TRIGGER */
+#endif /* CONFIG_ADI_ADT7420_TRIGGER */
 
 
 #endif /* ZEPHYR_DRIVERS_SENSOR_ADT7420_ADT7420_H_ */
