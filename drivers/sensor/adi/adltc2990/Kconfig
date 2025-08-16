@@ -4,7 +4,7 @@
 # Copyright The Zephyr Project Contributors
 # SPDX-License-Identifier: Apache-2.0
 
-menuconfig ADLTC2990
+menuconfig ADI_ADLTC2990
 	bool "ADLTC2990 (ADI) voltage/current/temp sensor driver"
 	default y
 	depends on DT_HAS_ADI_ADLTC2990_ENABLED
@@ -13,13 +13,13 @@ menuconfig ADLTC2990
 	  Enable the driver for Analog Devices LTC2990
 	  Quad I2C Voltage, Current and Temperature Monitor.
 
-if ADLTC2990
+if ADI_ADLTC2990
 
-config EMUL_ADLTC2990
+config EMUL_ADI_ADLTC2990
 	bool "Emulator for ADLTC2990"
 	default y
 	depends on EMUL
 	help
 	  Enable ADLTC2990 emulator.
 
-endif # ADLTC2990
+endif # ADI_ADLTC2990
