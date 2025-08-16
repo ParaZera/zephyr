@@ -20,7 +20,7 @@ int adt7310_trigger_set(const struct device *dev, const struct sensor_trigger *t
 struct adt7310_data {
 	int16_t sample;
 
-#ifdef CONFIG_ADT7310_TRIGGER
+#ifdef CONFIG_ADI_ADT7310_TRIGGER
 	struct gpio_callback gpio_cb;
 
 	sensor_trigger_handler_t th_handler;
@@ -28,19 +28,19 @@ struct adt7310_data {
 
 	const struct device *dev;
 
-#ifdef CONFIG_ADT7310_TRIGGER_OWN_THREAD
-	K_KERNEL_STACK_MEMBER(thread_stack, CONFIG_ADT7310_THREAD_STACK_SIZE);
+#ifdef CONFIG_ADI_ADT7310_TRIGGER_OWN_THREAD
+	K_KERNEL_STACK_MEMBER(thread_stack, CONFIG_ADI_ADT7310_THREAD_STACK_SIZE);
 	struct k_sem gpio_sem;
 	struct k_thread thread;
-#elif CONFIG_ADT7310_TRIGGER_GLOBAL_THREAD
+#elif CONFIG_ADI_ADT7310_TRIGGER_GLOBAL_THREAD
 	struct k_work work;
 #endif
-#endif /* CONFIG_ADT7310_TRIGGER */
+#endif /* CONFIG_ADI_ADT7310_TRIGGER */
 };
 
 struct adt7310_dev_config {
 	struct spi_dt_spec bus;
-#ifdef CONFIG_ADT7310_TRIGGER
+#ifdef CONFIG_ADI_ADT7310_TRIGGER
 	struct gpio_dt_spec int_gpio;
 #endif
 };

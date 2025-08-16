@@ -264,7 +264,7 @@ static int adt7310_init(const struct device *dev)
 		return ret;
 	}
 
-#if defined(CONFIG_ADT7310_TRIGGER)
+#if defined(CONFIG_ADI_ADT7310_TRIGGER)
 	if (cfg->int_gpio.port) {
 		ret = adt7310_init_interrupt(dev);
 		if (ret) {
@@ -280,7 +280,7 @@ static DEVICE_API(sensor, adt7310_driver_api) = {
 	.attr_set = adt7310_attr_set,
 	.sample_fetch = adt7310_sample_fetch,
 	.channel_get  = adt7310_channel_get,
-#if defined(CONFIG_ADT7310_TRIGGER)
+#if defined(CONFIG_ADI_ADT7310_TRIGGER)
 	.trigger_set = adt7310_trigger_set,
 #endif
 };
@@ -293,7 +293,7 @@ static DEVICE_API(sensor, adt7310_driver_api) = {
 			inst,                                                                      \
 			(SPI_WORD_SET(8) | SPI_TRANSFER_MSB | SPI_MODE_CPOL | SPI_MODE_CPHA), 0),  \
                                                                                                    \
-		IF_ENABLED(CONFIG_ADT7310_TRIGGER,                                                 \
+		IF_ENABLED(CONFIG_ADI_ADT7310_TRIGGER,                                                 \
 			   (.int_gpio = GPIO_DT_SPEC_INST_GET_OR(inst, int_gpios, {0}),))};        \
                                                                                                    \
 	SENSOR_DEVICE_DT_INST_DEFINE(inst, adt7310_init, NULL, &adt7310_data_##inst,               \
