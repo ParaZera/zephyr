@@ -95,12 +95,12 @@ int adxl372_set_op_mode(const struct device *dev, enum adxl372_op_mode op_mode)
 					   ADXL372_POWER_CTL_MODE_MSK,
 					   ADXL372_POWER_CTL_MODE(op_mode));
 
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 	if (ret == 0) {
 		data->pwr_reg &= ~ADXL372_POWER_CTL_MODE_MSK;
 		data->pwr_reg |= ADXL372_POWER_CTL_MODE(op_mode);
 	}
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 	return ret;
 }
@@ -153,10 +153,10 @@ static int adxl372_set_bandwidth(const struct device *dev,
 		return ret;
 	}
 
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 	data->pwr_reg &= ~ADXL372_POWER_CTL_LPF_DIS_MSK;
 	data->pwr_reg |= mask;
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 	return data->hw_tf->write_reg_mask(dev, ADXL372_MEASURE,
 					   ADXL372_MEASURE_BANDWIDTH_MSK,
@@ -194,10 +194,10 @@ static int adxl372_set_hpf_corner(const struct device *dev,
 		return ret;
 	}
 
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 	data->pwr_reg &= ~ADXL372_POWER_CTL_HPF_DIS_MSK;
 	data->pwr_reg |= mask;
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 	return data->hw_tf->write_reg(dev, ADXL372_HPF, ADXL372_HPF_CORNER(c));
 }
@@ -259,12 +259,12 @@ static int adxl372_set_instant_on_th(const struct device *dev,
 					   ADXL372_POWER_CTL_INSTANT_ON_TH_MSK,
 					   ADXL372_POWER_CTL_INSTANT_ON_TH_MODE(mode));
 
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 	if (ret == 0) {
 		data->pwr_reg &= ~ADXL372_POWER_CTL_INSTANT_ON_TH_MSK;
 		data->pwr_reg |= ADXL372_POWER_CTL_INSTANT_ON_TH_MODE(mode);
 	}
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 	return ret;
 }
@@ -344,12 +344,12 @@ static int adxl372_set_filter_settle(const struct device *dev,
 					   ADXL372_POWER_CTL_FIL_SETTLE_MSK,
 					   ADXL372_POWER_CTL_FIL_SETTLE_MODE(mode));
 
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 	if (ret == 0) {
 		data->pwr_reg &= ~ADXL372_POWER_CTL_FIL_SETTLE_MSK;
 		data->pwr_reg |= ADXL372_POWER_CTL_FIL_SETTLE_MODE(mode);
 	}
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 	return ret;
 }
@@ -526,7 +526,7 @@ int adxl372_get_accel_data(const struct device *dev, bool maxpeak,
 	uint8_t status1;
 	int ret;
 
-	if (!IS_ENABLED(CONFIG_ADXL372_TRIGGER)) {
+	if (!IS_ENABLED(CONFIG_ADI_ADXL372_TRIGGER)) {
 		do {
 			adxl372_get_status(dev, &status1, NULL, NULL);
 		} while (!(ADXL372_STATUS_1_DATA_RDY(status1)));
@@ -534,9 +534,9 @@ int adxl372_get_accel_data(const struct device *dev, bool maxpeak,
 
 	ret = data->hw_tf->read_reg_multiple(dev, maxpeak ? ADXL372_X_MAXPEAK_H :
 					     ADXL372_X_DATA_H, buf, 6);
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 	accel_data->is_fifo = 0;
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 	accel_data->x = (buf[0] << 8) | (buf[1] & 0xF0);
 	accel_data->y = (buf[2] << 8) | (buf[3] & 0xF0);
 	accel_data->z = (buf[4] << 8) | (buf[5] & 0xF0);
@@ -696,7 +696,7 @@ static DEVICE_API(sensor, adxl372_api_funcs) = {
 	.attr_set = adxl372_attr_set,
 	.sample_fetch = adxl372_sample_fetch,
 	.channel_get = adxl372_channel_get,
-#ifdef CONFIG_ADXL372_TRIGGER
+#ifdef CONFIG_ADI_ADXL372_TRIGGER
 	.trigger_set = adxl372_trigger_set,
 #endif
 #ifdef CONFIG_SENSOR_ASYNC_API
@@ -727,7 +727,7 @@ static int adxl372_probe(const struct device *dev)
 		return -ENODEV;
 	}
 
-#ifdef CONFIG_ADXL372_TRIGGER
+#ifdef CONFIG_ADI_ADXL372_TRIGGER
 	data->act_proc_mode = ADXL372_LINKED,
 #else
 	data->act_proc_mode = ADXL372_LOOPED,
@@ -808,7 +808,7 @@ static int adxl372_probe(const struct device *dev)
 		return ret;
 	}
 
-#ifdef CONFIG_ADXL372_TRIGGER
+#ifdef CONFIG_ADI_ADXL372_TRIGGER
 	if (adxl372_init_interrupt(dev) < 0) {
 		LOG_ERR("Failed to initialize interrupt!");
 		return -EIO;
@@ -874,31 +874,31 @@ static int adxl372_init(const struct device *dev)
 	SPI_DT_IODEV_DEFINE(adxl372_iodev_##inst, DT_DRV_INST(inst), ADXL372_SPI_CFG, 0U);         \
 	RTIO_DEFINE(adxl372_rtio_ctx_##inst, 16, 16);
 
-#ifdef CONFIG_ADXL372_TRIGGER
+#ifdef CONFIG_ADI_ADXL372_TRIGGER
 #define ADXL372_CFG_IRQ(inst) \
 		.interrupt = GPIO_DT_SPEC_INST_GET(inst, int1_gpios),
 #else
 #define ADXL372_CFG_IRQ(inst)
-#endif /* CONFIG_ADXL372_TRIGGER */
+#endif /* CONFIG_ADI_ADXL372_TRIGGER */
 
 #define ADXL372_CONFIG(inst)								\
 		.bw = DT_INST_PROP(inst, bw),						\
 		.hpf = DT_INST_PROP(inst, hpf),						\
 		.odr = DT_INST_PROP(inst, odr),						\
-		.max_peak_detect_mode = IS_ENABLED(CONFIG_ADXL372_PEAK_DETECT_MODE),	\
+		.max_peak_detect_mode = IS_ENABLED(CONFIG_ADI_ADXL372_PEAK_DETECT_MODE),	\
 		.th_mode = ADXL372_INSTANT_ON_LOW_TH,					\
 		.autosleep = false,							\
 		.wur = ADXL372_WUR_52ms,						\
-		.activity_th.thresh = CONFIG_ADXL372_ACTIVITY_THRESHOLD / 100,		\
+		.activity_th.thresh = CONFIG_ADI_ADXL372_ACTIVITY_THRESHOLD / 100,		\
 		.activity_th.referenced =						\
-			IS_ENABLED(CONFIG_ADXL372_REFERENCED_ACTIVITY_DETECTION_MODE),	\
+			IS_ENABLED(CONFIG_ADI_ADXL372_REFERENCED_ACTIVITY_DETECTION_MODE),	\
 		.activity_th.enable = 1,						\
-		.activity_time = CONFIG_ADXL372_ACTIVITY_TIME,				\
-		.inactivity_th.thresh = CONFIG_ADXL372_INACTIVITY_THRESHOLD / 100,	\
+		.activity_time = CONFIG_ADI_ADXL372_ACTIVITY_TIME,				\
+		.inactivity_th.thresh = CONFIG_ADI_ADXL372_INACTIVITY_THRESHOLD / 100,	\
 		.inactivity_th.referenced =						\
-			IS_ENABLED(CONFIG_ADXL372_REFERENCED_ACTIVITY_DETECTION_MODE),	\
+			IS_ENABLED(CONFIG_ADI_ADXL372_REFERENCED_ACTIVITY_DETECTION_MODE),	\
 		.inactivity_th.enable = 1,						\
-		.inactivity_time = CONFIG_ADXL372_INACTIVITY_TIME,			\
+		.inactivity_time = CONFIG_ADI_ADXL372_INACTIVITY_TIME,			\
 		.filter_settle = ADXL372_FILTER_SETTLE_370,				\
 		.fifo_config.fifo_mode =						\
 			DT_INST_PROP_OR(inst, fifo_mode, ADXL372_FIFO_BYPASSED),	\
@@ -917,9 +917,9 @@ static int adxl372_init(const struct device *dev)
 	}
 
 #define ADXL372_DEFINE_SPI(inst)					\
-	IF_ENABLED(CONFIG_ADXL372_STREAM, (ADXL372_RTIO_DEFINE(inst)));                          \
+	IF_ENABLED(CONFIG_ADI_ADXL372_STREAM, (ADXL372_RTIO_DEFINE(inst)));                          \
 	static struct adxl372_data adxl372_data_##inst = {			\
-	IF_ENABLED(CONFIG_ADXL372_STREAM, (.rtio_ctx = &adxl372_rtio_ctx_##inst,                  \
+	IF_ENABLED(CONFIG_ADI_ADXL372_STREAM, (.rtio_ctx = &adxl372_rtio_ctx_##inst,                  \
 				.iodev = &adxl372_iodev_##inst,)) \
 	};     \
 	static const struct adxl372_dev_config adxl372_config_##inst =	\

@@ -15,9 +15,9 @@
 #include <zephyr/sys/util.h>
 #include <zephyr/dt-bindings/sensor/adxl372.h>
 
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 #include <zephyr/rtio/rtio.h>
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 #define DT_DRV_COMPAT adi_adxl372
 
@@ -288,10 +288,10 @@ struct adxl372_activity_threshold {
 };
 
 struct adxl372_xyz_accel_data {
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 	uint8_t is_fifo: 1;
 	uint8_t res: 7;
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 	int16_t x;
 	int16_t y;
 	int16_t z;
@@ -314,7 +314,7 @@ struct adxl372_data {
 	struct adxl372_fifo_config fifo_config;
 	enum adxl372_act_proc_mode act_proc_mode;
 	enum adxl372_odr odr;
-#ifdef CONFIG_ADXL372_TRIGGER
+#ifdef CONFIG_ADI_ADXL372_TRIGGER
 	struct gpio_callback gpio_cb;
 
 	sensor_trigger_handler_t th_handler;
@@ -323,15 +323,15 @@ struct adxl372_data {
 	const struct sensor_trigger *drdy_trigger;
 	const struct device *dev;
 
-#if defined(CONFIG_ADXL372_TRIGGER_OWN_THREAD)
-	K_KERNEL_STACK_MEMBER(thread_stack, CONFIG_ADXL372_THREAD_STACK_SIZE);
+#if defined(CONFIG_ADI_ADXL372_TRIGGER_OWN_THREAD)
+	K_KERNEL_STACK_MEMBER(thread_stack, CONFIG_ADI_ADXL372_THREAD_STACK_SIZE);
 	struct k_sem gpio_sem;
 	struct k_thread thread;
-#elif defined(CONFIG_ADXL372_TRIGGER_GLOBAL_THREAD)
+#elif defined(CONFIG_ADI_ADXL372_TRIGGER_GLOBAL_THREAD)
 	struct k_work work;
 #endif
-#endif /* CONFIG_ADXL372_TRIGGER */
-#ifdef CONFIG_ADXL372_STREAM
+#endif /* CONFIG_ADI_ADXL372_TRIGGER */
+#ifdef CONFIG_ADI_ADXL372_STREAM
 	struct rtio_iodev_sqe *sqe;
 	struct rtio *rtio_ctx;
 	struct rtio_iodev *iodev;
@@ -340,7 +340,7 @@ struct adxl372_data {
 	uint64_t timestamp;
 	uint8_t fifo_full_irq;
 	uint8_t pwr_reg;
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 };
 
 struct adxl372_dev_config {
@@ -351,7 +351,7 @@ struct adxl372_dev_config {
 	struct spi_dt_spec spi;
 #endif
 	int (*bus_init)(const struct device *dev);
-#ifdef CONFIG_ADXL372_TRIGGER
+#ifdef CONFIG_ADI_ADXL372_TRIGGER
 	struct gpio_dt_spec interrupt;
 #endif
 
@@ -401,7 +401,7 @@ int adxl372_i2c_init(const struct device *dev);
 void adxl372_submit_stream(const struct device *dev, struct rtio_iodev_sqe *iodev_sqe);
 void adxl372_stream_irq_handler(const struct device *dev);
 
-#ifdef CONFIG_ADXL372_TRIGGER
+#ifdef CONFIG_ADI_ADXL372_TRIGGER
 int adxl372_get_status(const struct device *dev,
 		       uint8_t *status1, uint8_t *status2, uint16_t *fifo_entries);
 
@@ -410,7 +410,7 @@ int adxl372_trigger_set(const struct device *dev,
 			sensor_trigger_handler_t handler);
 
 int adxl372_init_interrupt(const struct device *dev);
-#endif /* CONFIG_ADXL372_TRIGGER */
+#endif /* CONFIG_ADI_ADXL372_TRIGGER */
 
 #ifdef CONFIG_SENSOR_ASYNC_API
 int adxl372_get_accel_data(const struct device *dev, bool maxpeak,
@@ -420,11 +420,11 @@ int adxl372_get_decoder(const struct device *dev, const struct sensor_decoder_ap
 void adxl372_accel_convert(struct sensor_value *val, int16_t sample);
 #endif /* CONFIG_SENSOR_ASYNC_API */
 
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 int adxl372_configure_fifo(const struct device *dev, enum adxl372_fifo_mode mode,
 			   enum adxl372_fifo_format format, uint16_t fifo_samples);
 size_t adxl372_get_packet_size(const struct adxl372_dev_config *cfg);
 int adxl372_set_op_mode(const struct device *dev, enum adxl372_op_mode op_mode);
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 #endif /* ZEPHYR_DRIVERS_SENSOR_ADXL372_ADXL372_H_ */

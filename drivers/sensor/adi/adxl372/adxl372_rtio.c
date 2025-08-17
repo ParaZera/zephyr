@@ -54,7 +54,7 @@ void adxl372_submit(const struct device *dev, struct rtio_iodev_sqe *iodev_sqe)
 		__ASSERT_NO_MSG(req);
 
 		rtio_work_req_submit(req, iodev_sqe, adxl372_submit_fetch);
-	} else if (IS_ENABLED(CONFIG_ADXL372_STREAM)) {
+	} else if (IS_ENABLED(CONFIG_ADI_ADXL372_STREAM)) {
 		adxl372_submit_stream(dev, iodev_sqe);
 	} else {
 		rtio_iodev_sqe_err(iodev_sqe, -ENOTSUP);

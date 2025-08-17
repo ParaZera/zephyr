@@ -6,7 +6,7 @@
 
 #include "adxl372.h"
 
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 
 /* (1.0 / 10 (sensor sensitivity)) * (2^31 / 2^11 (sensor shift) ) * SENSOR_G */
 #define SENSOR_QSCALE_FACTOR UINT32_C(1027604)
@@ -144,7 +144,7 @@ static int adxl372_decode_stream(const uint8_t *buffer, struct sensor_chan_spec 
 	return count;
 }
 
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 static int adxl372_decoder_get_frame_count(const uint8_t *buffer, struct sensor_chan_spec chan_spec,
 					   uint16_t *frame_count)
@@ -155,11 +155,11 @@ static int adxl372_decoder_get_frame_count(const uint8_t *buffer, struct sensor_
 		return ret;
 	}
 
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 	const struct adxl372_fifo_data *data = (const struct adxl372_fifo_data *)buffer;
 
 	if (!data->is_fifo) {
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 		switch (chan_spec.chan_type) {
 		case SENSOR_CHAN_ACCEL_X:
 		case SENSOR_CHAN_ACCEL_Y:
@@ -172,7 +172,7 @@ static int adxl372_decoder_get_frame_count(const uint8_t *buffer, struct sensor_
 		default:
 			break;
 		}
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 	} else {
 		if (data->fifo_byte_count == 0) {
 			*frame_count = 0;
@@ -213,7 +213,7 @@ static int adxl372_decoder_get_frame_count(const uint8_t *buffer, struct sensor_
 			}
 		}
 	}
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 	return ret;
 }
@@ -257,11 +257,11 @@ static int adxl372_decoder_decode(const uint8_t *buffer, struct sensor_chan_spec
 {
 	const struct adxl372_xyz_accel_data *data = (const struct adxl372_xyz_accel_data *)buffer;
 
-#ifdef CONFIG_ADXL372_STREAM
+#ifdef CONFIG_ADI_ADXL372_STREAM
 	if (data->is_fifo) {
 		return adxl372_decode_stream(buffer, chan_spec, fit, max_count, data_out);
 	}
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 	return adxl372_decode_sample(data, chan_spec, fit, max_count, data_out);
 }

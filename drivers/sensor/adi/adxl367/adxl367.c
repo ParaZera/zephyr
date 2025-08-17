@@ -134,7 +134,7 @@ static int adxl367_set_op_mode(const struct device *dev,
 #ifdef CONFIG_ADI_ADXL367_STREAM
 	data->pwr_reg &= ~ADXL367_POWER_CTL_MEASURE_MSK;
 	data->pwr_reg |= FIELD_PREP(ADXL367_POWER_CTL_MEASURE_MSK, op_mode);
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 	return 0;
 }
@@ -163,7 +163,7 @@ static int adxl367_set_autosleep(const struct device *dev, bool enable)
 		data->pwr_reg &= ~ADXL367_POWER_CTL_AUTOSLEEP_MSK;
 		data->pwr_reg |= FIELD_PREP(ADXL367_POWER_CTL_AUTOSLEEP_MSK, enable);
 	}
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 	return ret;
 }
@@ -191,7 +191,7 @@ static int adxl367_set_low_noise(const struct device *dev, bool enable)
 		data->pwr_reg &= ~ADXL367_POWER_CTL_NOISE_MSK;
 		data->pwr_reg |= FIELD_PREP(ADXL367_POWER_CTL_NOISE_MSK, enable);
 	}
-#endif /* CONFIG_ADXL372_STREAM */
+#endif /* CONFIG_ADI_ADXL372_STREAM */
 
 	return ret;
 }
