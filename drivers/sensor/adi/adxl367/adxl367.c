@@ -108,13 +108,13 @@ static int adxl367_setup_inactivity_detection(const struct device *dev,
  *
  * @return 0 in case of success, negative error code otherwise.
  */
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 int adxl367_set_op_mode(const struct device *dev,
 			       enum adxl367_op_mode op_mode)
 #else
 static int adxl367_set_op_mode(const struct device *dev,
 			       enum adxl367_op_mode op_mode)
-#endif /* CONFIG_ADXL367_STREAM */
+#endif /* CONFIG_ADI_ADXL367_STREAM */
 {
 	struct adxl367_data *data = dev->data;
 	int ret;
@@ -131,7 +131,7 @@ static int adxl367_set_op_mode(const struct device *dev,
 		k_sleep(K_MSEC(100));
 	}
 
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 	data->pwr_reg &= ~ADXL367_POWER_CTL_MEASURE_MSK;
 	data->pwr_reg |= FIELD_PREP(ADXL367_POWER_CTL_MEASURE_MSK, op_mode);
 #endif /* CONFIG_ADXL372_STREAM */
@@ -158,7 +158,7 @@ static int adxl367_set_autosleep(const struct device *dev, bool enable)
 					   ADXL367_POWER_CTL_AUTOSLEEP_MSK,
 					   FIELD_PREP(ADXL367_POWER_CTL_AUTOSLEEP_MSK, enable));
 
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 	if (ret == 0) {
 		data->pwr_reg &= ~ADXL367_POWER_CTL_AUTOSLEEP_MSK;
 		data->pwr_reg |= FIELD_PREP(ADXL367_POWER_CTL_AUTOSLEEP_MSK, enable);
@@ -186,7 +186,7 @@ static int adxl367_set_low_noise(const struct device *dev, bool enable)
 					   ADXL367_POWER_CTL_NOISE_MSK,
 					   FIELD_PREP(ADXL367_POWER_CTL_NOISE_MSK, enable));
 
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 	if (ret == 0) {
 		data->pwr_reg &= ~ADXL367_POWER_CTL_NOISE_MSK;
 		data->pwr_reg |= FIELD_PREP(ADXL367_POWER_CTL_NOISE_MSK, enable);
@@ -240,11 +240,11 @@ int adxl367_set_output_rate(const struct device *dev, enum adxl367_odr odr)
 					  ADXL367_FILTER_CTL_ODR_MSK,
 					  FIELD_PREP(ADXL367_FILTER_CTL_ODR_MSK, odr));
 
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 	if (ret == 0) {
 		data->odr = odr;
 	}
-#endif /* CONFIG_ADXL367_STREAM */
+#endif /* CONFIG_ADI_ADXL367_STREAM */
 
 	return ret;
 }
@@ -270,11 +270,11 @@ int adxl367_set_range(const struct device *dev, enum adxl367_range range)
 					  ADXL367_FILTER_CTL_RANGE_MSK,
 					  FIELD_PREP(ADXL367_FILTER_CTL_RANGE_MSK, range));
 
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 	if (ret == 0) {
 		data->range = range;
 	}
-#endif /* CONFIG_ADXL367_STREAM */
+#endif /* CONFIG_ADI_ADXL367_STREAM */
 
 	return ret;
 }
@@ -647,14 +647,14 @@ int adxl367_fifo_setup(const struct device *dev,
 		return ret;
 	}
 
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 	struct adxl367_data *data = (struct adxl367_data *)dev->data;
 
 	data->fifo_config.fifo_mode = mode;
 	data->fifo_config.fifo_format = format;
 	data->fifo_config.fifo_samples = sets_nb;
 	data->fifo_config.fifo_read_mode = read_mode;
-#endif /* CONFIG_ADXL367_STREAM */
+#endif /* CONFIG_ADI_ADXL367_STREAM */
 
 	return ret;
 }
@@ -944,7 +944,7 @@ static DEVICE_API(sensor, adxl367_api_funcs) = {
 	.attr_set     = adxl367_attr_set,
 	.sample_fetch = adxl367_sample_fetch,
 	.channel_get  = adxl367_channel_get,
-#ifdef CONFIG_ADXL367_TRIGGER
+#ifdef CONFIG_ADI_ADXL367_TRIGGER
 	.trigger_set = adxl367_trigger_set,
 #endif
 #ifdef CONFIG_SENSOR_ASYNC_API
@@ -981,7 +981,7 @@ static int adxl367_probe(const struct device *dev)
 
 	data->range = cfg->range;
 
-#ifdef CONFIG_ADXL367_TRIGGER
+#ifdef CONFIG_ADI_ADXL367_TRIGGER
 	data->act_proc_mode = ADXL367_LINKED;
 #else
 	data->act_proc_mode = ADXL367_LOOPED;
@@ -1040,7 +1040,7 @@ static int adxl367_probe(const struct device *dev)
 		return ret;
 	}
 
-if (IS_ENABLED(CONFIG_ADXL367_TRIGGER)) {
+if (IS_ENABLED(CONFIG_ADI_ADXL367_TRIGGER)) {
 	ret = adxl367_init_interrupt(dev);
 	if (ret != 0) {
 		LOG_ERR("Failed to initialize interrupt!");
@@ -1090,12 +1090,12 @@ static int adxl367_init(const struct device *dev)
 			      CONFIG_SENSOR_INIT_PRIORITY,		\
 			      &adxl367_api_funcs);
 
-#ifdef CONFIG_ADXL367_TRIGGER
+#ifdef CONFIG_ADI_ADXL367_TRIGGER
 #define ADXL367_CFG_IRQ(inst) \
 		.interrupt = GPIO_DT_SPEC_INST_GET(inst, int1_gpios),
 #else
 #define ADXL367_CFG_IRQ(inst)
-#endif /* CONFIG_ADXL367_TRIGGER */
+#endif /* CONFIG_ADI_ADXL367_TRIGGER */
 
 #define ADXL367_CONFIG(inst, chipid)							\
 		.odr = DT_INST_PROP(inst, odr),						\
@@ -1103,18 +1103,18 @@ static int adxl367_init(const struct device *dev)
 		.low_noise = false,							\
 		.temp_en = true,							\
 		.range = ADXL367_2G_RANGE,						\
-		.activity_th.value = CONFIG_ADXL367_ACTIVITY_THRESHOLD,			\
+		.activity_th.value = CONFIG_ADI_ADXL367_ACTIVITY_THRESHOLD,			\
 		.activity_th.referenced =						\
-			IS_ENABLED(CONFIG_ADXL367_REFERENCED_ACTIVITY_DETECTION_MODE),	\
+			IS_ENABLED(CONFIG_ADI_ADXL367_REFERENCED_ACTIVITY_DETECTION_MODE),	\
 		.activity_th.enable =							\
-			IS_ENABLED(CONFIG_ADXL367_ACTIVITY_DETECTION_MODE),		\
-		.activity_time = CONFIG_ADXL367_ACTIVITY_TIME,				\
-		.inactivity_th.value = CONFIG_ADXL367_INACTIVITY_THRESHOLD,		\
+			IS_ENABLED(CONFIG_ADI_ADXL367_ACTIVITY_DETECTION_MODE),		\
+		.activity_time = CONFIG_ADI_ADXL367_ACTIVITY_TIME,				\
+		.inactivity_th.value = CONFIG_ADI_ADXL367_INACTIVITY_THRESHOLD,		\
 		.inactivity_th.referenced =						\
-			IS_ENABLED(CONFIG_ADXL367_REFERENCED_INACTIVITY_DETECTION_MODE),\
+			IS_ENABLED(CONFIG_ADI_ADXL367_REFERENCED_INACTIVITY_DETECTION_MODE),\
 		.inactivity_th.enable =							\
-			IS_ENABLED(CONFIG_ADXL367_INACTIVITY_DETECTION_MODE),		\
-		.inactivity_time = CONFIG_ADXL367_INACTIVITY_TIME,			\
+			IS_ENABLED(CONFIG_ADI_ADXL367_INACTIVITY_DETECTION_MODE),		\
+		.inactivity_time = CONFIG_ADI_ADXL367_INACTIVITY_TIME,			\
 		.fifo_config.fifo_mode =						\
 		DT_INST_PROP_OR(inst, fifo_mode, ADXL367_FIFO_DISABLED),		\
 		.fifo_config.fifo_format = ADXL367_FIFO_FORMAT_XYZ,			\
@@ -1143,9 +1143,9 @@ static int adxl367_init(const struct device *dev)
 	}
 
 #define ADXL367_DEFINE_SPI(inst, chipid)					\
-	IF_ENABLED(CONFIG_ADXL367_STREAM, (ADXL367_RTIO_DEFINE(inst, chipid)));                  \
+	IF_ENABLED(CONFIG_ADI_ADXL367_STREAM, (ADXL367_RTIO_DEFINE(inst, chipid)));                  \
 	static struct adxl367_data adxl367_data_##inst##chipid = {			\
-	IF_ENABLED(CONFIG_ADXL367_STREAM, (.rtio_ctx = &adxl367_rtio_ctx_##inst##chipid,         \
+	IF_ENABLED(CONFIG_ADI_ADXL367_STREAM, (.rtio_ctx = &adxl367_rtio_ctx_##inst##chipid,         \
 				.iodev = &adxl367_iodev_##inst##chipid,)) \
 	};	\
 	static const struct adxl367_dev_config adxl367_config_##inst##chipid =	\

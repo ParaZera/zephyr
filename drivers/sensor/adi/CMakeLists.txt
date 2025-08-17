@@ -8,6 +8,6 @@ add_subdirectory_ifdef(CONFIG_ADI_ADT7310 adt7310)
 add_subdirectory_ifdef(CONFIG_ADI_ADT7420 adt7420)
 add_subdirectory_ifdef(CONFIG_ADXL345 adxl345)
 add_subdirectory_ifdef(CONFIG_ADI_ADXL362 adxl362)
-add_subdirectory_ifdef(CONFIG_ADXL367 adxl367)
+add_subdirectory_ifdef(CONFIG_ADI_ADXL367 adxl367)
 add_subdirectory_ifdef(CONFIG_ADXL372 adxl372)
 # zephyr-keep-sorted-stop

@@ -7,7 +7,7 @@
 #include "adxl367.h"
 #include <zephyr/sys/byteorder.h>
 
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 
 #define ADXL367_COMPLEMENT		0xC000
 /* Scale factor is the same for all ranges. */
@@ -602,7 +602,7 @@ uint16_t adxl367_get_frame_count(const struct adxl367_fifo_data *data)
 	return frame_count;
 }
 
-#endif /* CONFIG_ADXL367_STREAM */
+#endif /* CONFIG_ADI_ADXL367_STREAM */
 
 static int adxl367_decoder_get_frame_count(const uint8_t *buffer,
 					     struct sensor_chan_spec chan_spec,
@@ -614,11 +614,11 @@ static int adxl367_decoder_get_frame_count(const uint8_t *buffer,
 		return ret;
 	}
 
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 	const struct adxl367_fifo_data *data = (const struct adxl367_fifo_data *)buffer;
 
 	if (!data->is_fifo) {
-#endif /* CONFIG_ADXL367_STREAM */
+#endif /* CONFIG_ADI_ADXL367_STREAM */
 		switch (chan_spec.chan_type) {
 		case SENSOR_CHAN_ACCEL_X:
 		case SENSOR_CHAN_ACCEL_Y:
@@ -631,7 +631,7 @@ static int adxl367_decoder_get_frame_count(const uint8_t *buffer,
 		default:
 			break;
 		}
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 	} else {
 		if (data->fifo_byte_count == 0)	{
 			*frame_count = 0;
@@ -679,7 +679,7 @@ static int adxl367_decoder_get_frame_count(const uint8_t *buffer,
 			}
 		}
 	}
-#endif /* CONFIG_ADXL367_STREAM */
+#endif /* CONFIG_ADI_ADXL367_STREAM */
 
 	return ret;
 }
@@ -725,11 +725,11 @@ static int adxl367_decoder_decode(const uint8_t *buffer, struct sensor_chan_spec
 {
 	const struct adxl367_sample_data *data = (const struct adxl367_sample_data *)buffer;
 
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 	if (data->is_fifo) {
 		return adxl367_decode_stream(buffer, chan_spec, fit, max_count, data_out);
 	}
-#endif /* CONFIG_ADXL367_STREAM */
+#endif /* CONFIG_ADI_ADXL367_STREAM */
 
 	return adxl367_decode_sample(data, chan_spec, fit, max_count, data_out);
 }

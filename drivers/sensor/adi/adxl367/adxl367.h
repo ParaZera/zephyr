@@ -315,10 +315,10 @@ struct adxl367_xyz_accel_data {
 };
 
 struct adxl367_sample_data {
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 	uint8_t is_fifo: 1;
 	uint8_t res: 7;
-#endif /*CONFIG_ADXL367_STREAM*/
+#endif /*CONFIG_ADI_ADXL367_STREAM*/
 	struct adxl367_xyz_accel_data xyz;
 	int16_t raw_temp;
 };
@@ -341,7 +341,7 @@ struct adxl367_data {
 	struct adxl367_fifo_config fifo_config;
 	enum adxl367_act_proc_mode act_proc_mode;
 	enum adxl367_range range;
-#ifdef CONFIG_ADXL367_TRIGGER
+#ifdef CONFIG_ADI_ADXL367_TRIGGER
 	struct gpio_callback gpio_cb;
 
 	sensor_trigger_handler_t th_handler;
@@ -350,15 +350,15 @@ struct adxl367_data {
 	const struct sensor_trigger *drdy_trigger;
 	const struct device *dev;
 
-#if defined(CONFIG_ADXL367_TRIGGER_OWN_THREAD)
-	K_KERNEL_STACK_MEMBER(thread_stack, CONFIG_ADXL367_THREAD_STACK_SIZE);
+#if defined(CONFIG_ADI_ADXL367_TRIGGER_OWN_THREAD)
+	K_KERNEL_STACK_MEMBER(thread_stack, CONFIG_ADI_ADXL367_THREAD_STACK_SIZE);
 	struct k_sem gpio_sem;
 	struct k_thread thread;
-#elif defined(CONFIG_ADXL367_TRIGGER_GLOBAL_THREAD)
+#elif defined(CONFIG_ADI_ADXL367_TRIGGER_GLOBAL_THREAD)
 	struct k_work work;
 #endif
-#endif /* CONFIG_ADXL367_TRIGGER */
-#ifdef CONFIG_ADXL367_STREAM
+#endif /* CONFIG_ADI_ADXL367_TRIGGER */
+#ifdef CONFIG_ADI_ADXL367_STREAM
 	uint8_t status;
 	uint8_t fifo_ent[2];
 	struct rtio_iodev_sqe *sqe;
@@ -371,7 +371,7 @@ struct adxl367_data {
 	uint8_t res: 6;
 	enum adxl367_odr odr;
 	uint8_t pwr_reg;
-#endif /* CONFIG_ADXL367_STREAM */
+#endif /* CONFIG_ADI_ADXL367_STREAM */
 };
 
 struct adxl367_dev_config {
@@ -383,7 +383,7 @@ struct adxl367_dev_config {
 #endif /* ADXL367_BUS_SPI */
 	int (*bus_init)(const struct device *dev);
 
-#ifdef CONFIG_ADXL367_TRIGGER
+#ifdef CONFIG_ADI_ADXL367_TRIGGER
 	struct gpio_dt_spec interrupt;
 #endif
 
@@ -448,7 +448,7 @@ void adxl367_accel_convert(struct sensor_value *val, int16_t value,
 void adxl367_temp_convert(struct sensor_value *val, int16_t value);
 #endif /* CONFIG_SENSOR_ASYNC_API */
 
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 int adxl367_fifo_setup(const struct device *dev,
 		       enum adxl367_fifo_mode mode,
 		       enum adxl367_fifo_format format,
@@ -457,6 +457,6 @@ int adxl367_fifo_setup(const struct device *dev,
 int adxl367_set_op_mode(const struct device *dev,
 			       enum adxl367_op_mode op_mode);
 size_t adxl367_get_packet_size(const struct adxl367_dev_config *cfg);
-#endif /* CONFIG_ADXL367_STREAM */
+#endif /* CONFIG_ADI_ADXL367_STREAM */
 
 #endif /* ZEPHYR_DRIVERS_SENSOR_ADXL367_ADXL367_H_ */

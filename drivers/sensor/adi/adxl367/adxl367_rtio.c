@@ -32,9 +32,9 @@ static void adxl367_submit_fetch(struct rtio_iodev_sqe *iodev_sqe)
 
 	struct adxl367_sample_data *enc_data = (struct adxl367_sample_data *)buffer;
 
-#ifdef CONFIG_ADXL367_STREAM
+#ifdef CONFIG_ADI_ADXL367_STREAM
 	enc_data->is_fifo = 0;
-#endif /*CONFIG_ADXL367_STREAM*/
+#endif /*CONFIG_ADI_ADXL367_STREAM*/
 
 	rc = adxl367_get_accel_data(dev, &enc_data->xyz);
 	if (rc != 0) {
@@ -66,7 +66,7 @@ void adxl367_submit(const struct device *dev, struct rtio_iodev_sqe *iodev_sqe)
 		__ASSERT_NO_MSG(req);
 
 		rtio_work_req_submit(req, iodev_sqe, adxl367_submit_fetch);
-	} else if (IS_ENABLED(CONFIG_ADXL367_STREAM)) {
+	} else if (IS_ENABLED(CONFIG_ADI_ADXL367_STREAM)) {
 		adxl367_submit_stream(dev, iodev_sqe);
 	} else {
 		rtio_iodev_sqe_err(iodev_sqe, -ENOTSUP);
