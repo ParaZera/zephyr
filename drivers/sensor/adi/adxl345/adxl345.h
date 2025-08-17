@@ -16,9 +16,9 @@
 
 #include <zephyr/dt-bindings/sensor/adxl345.h>
 
-#ifdef CONFIG_ADXL345_STREAM
+#ifdef CONFIG_ADI_ADXL345_STREAM
 #include <zephyr/rtio/rtio.h>
-#endif /* CONFIG_ADXL345_STREAM */
+#endif /* CONFIG_ADI_ADXL345_STREAM */
 
 #define DT_DRV_COMPAT adi_adxl345
 
@@ -160,7 +160,7 @@ struct adxl345_dev_data {
 	uint8_t is_full_res;
 	uint8_t selected_range;
 	enum adxl345_odr odr;
-#ifdef CONFIG_ADXL345_TRIGGER
+#ifdef CONFIG_ADI_ADXL345_TRIGGER
 	struct gpio_callback gpio_cb;
 
 	sensor_trigger_handler_t th_handler;
@@ -169,15 +169,15 @@ struct adxl345_dev_data {
 	const struct sensor_trigger *drdy_trigger;
 	const struct device *dev;
 
-#if defined(CONFIG_ADXL345_TRIGGER_OWN_THREAD)
-	K_KERNEL_STACK_MEMBER(thread_stack, CONFIG_ADXL345_THREAD_STACK_SIZE);
+#if defined(CONFIG_ADI_ADXL345_TRIGGER_OWN_THREAD)
+	K_KERNEL_STACK_MEMBER(thread_stack, CONFIG_ADI_ADXL345_THREAD_STACK_SIZE);
 	struct k_sem gpio_sem;
 	struct k_thread thread;
-#elif defined(CONFIG_ADXL345_TRIGGER_GLOBAL_THREAD)
+#elif defined(CONFIG_ADI_ADXL345_TRIGGER_GLOBAL_THREAD)
 	struct k_work work;
 #endif
-#endif /* CONFIG_ADXL345_TRIGGER */
-#ifdef CONFIG_ADXL345_STREAM
+#endif /* CONFIG_ADI_ADXL345_TRIGGER */
+#ifdef CONFIG_ADI_ADXL345_STREAM
 	struct rtio_iodev_sqe *sqe;
 	struct rtio *rtio_ctx;
 	struct rtio_iodev *iodev;
@@ -188,7 +188,7 @@ struct adxl345_dev_data {
 	uint8_t fifo_watermark_irq;
 	uint8_t fifo_samples;
 	uint16_t fifo_total_bytes;
-#endif /* CONFIG_ADXL345_STREAM */
+#endif /* CONFIG_ADI_ADXL345_STREAM */
 };
 
 struct adxl345_fifo_data {
@@ -203,10 +203,10 @@ struct adxl345_fifo_data {
 } __attribute__((__packed__));
 
 struct adxl345_sample {
-#ifdef CONFIG_ADXL345_STREAM
+#ifdef CONFIG_ADI_ADXL345_STREAM
 	uint8_t is_fifo: 1;
 	uint8_t res: 7;
-#endif /* CONFIG_ADXL345_STREAM */
+#endif /* CONFIG_ADI_ADXL345_STREAM */
 	uint8_t selected_range;
 	bool is_full_res;
 	int16_t x;
@@ -235,7 +235,7 @@ struct adxl345_dev_config {
 	bool op_mode;
 	struct adxl345_fifo_config fifo_config;
 	uint8_t bus_type;
-#ifdef CONFIG_ADXL345_TRIGGER
+#ifdef CONFIG_ADI_ADXL345_TRIGGER
 	struct gpio_dt_spec interrupt;
 	bool route_to_int2;
 #endif
@@ -244,7 +244,7 @@ struct adxl345_dev_config {
 void adxl345_submit_stream(const struct device *dev, struct rtio_iodev_sqe *iodev_sqe);
 void adxl345_stream_irq_handler(const struct device *dev);
 
-#ifdef CONFIG_ADXL345_TRIGGER
+#ifdef CONFIG_ADI_ADXL345_TRIGGER
 int adxl345_get_status(const struct device *dev,
 		       uint8_t *status, uint16_t *fifo_entries);
 
@@ -254,7 +254,7 @@ int adxl345_trigger_set(const struct device *dev,
 
 int adxl345_init_interrupt(const struct device *dev);
 
-#endif /* CONFIG_ADXL345_TRIGGER */
+#endif /* CONFIG_ADI_ADXL345_TRIGGER */
 
 int adxl345_reg_write_mask(const struct device *dev,
 			       uint8_t reg_addr,
@@ -282,9 +282,9 @@ int adxl345_get_decoder(const struct device *dev, const struct sensor_decoder_ap
 void adxl345_accel_convert(struct sensor_value *val, int16_t sample);
 #endif /* CONFIG_SENSOR_ASYNC_API */
 
-#ifdef CONFIG_ADXL345_STREAM
+#ifdef CONFIG_ADI_ADXL345_STREAM
 int adxl345_configure_fifo(const struct device *dev, enum adxl345_fifo_mode mode,
 		enum adxl345_fifo_trigger trigger, uint16_t fifo_samples);
 size_t adxl345_get_packet_size(const struct adxl345_dev_config *cfg);
-#endif /* CONFIG_ADXL345_STREAM */
+#endif /* CONFIG_ADI_ADXL345_STREAM */
 #endif /* ZEPHYR_DRIVERS_SENSOR_ADX345_ADX345_H_ */

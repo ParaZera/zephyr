@@ -283,7 +283,7 @@ int adxl345_read_sample(const struct device *dev,
 	uint8_t axis_data[6], status1;
 	struct adxl345_dev_data *data = dev->data;
 
-	if (!IS_ENABLED(CONFIG_ADXL345_TRIGGER)) {
+	if (!IS_ENABLED(CONFIG_ADI_ADXL345_TRIGGER)) {
 		do {
 			adxl345_get_status(dev, &status1, NULL);
 		} while (!(ADXL345_STATUS_DATA_RDY(status1)));
@@ -371,7 +371,7 @@ static DEVICE_API(sensor, adxl345_api_funcs) = {
 	.attr_set = adxl345_attr_set,
 	.sample_fetch = adxl345_sample_fetch,
 	.channel_get = adxl345_channel_get,
-#ifdef CONFIG_ADXL345_TRIGGER
+#ifdef CONFIG_ADI_ADXL345_TRIGGER
 	.trigger_set = adxl345_trigger_set,
 #endif
 #ifdef CONFIG_SENSOR_ASYNC_API
@@ -380,7 +380,7 @@ static DEVICE_API(sensor, adxl345_api_funcs) = {
 #endif
 };
 
-#ifdef CONFIG_ADXL345_TRIGGER
+#ifdef CONFIG_ADI_ADXL345_TRIGGER
 /**
  * Configure the INT1 and INT2 interrupt pins.
  * @param dev - The device structure.
@@ -407,7 +407,7 @@ static int adxl345_interrupt_config(const struct device *dev,
 
 	ret = adxl345_reg_read_byte(dev, ADXL345_INT_MAP, &samples);
 	ret = adxl345_reg_read_byte(dev, ADXL345_INT_ENABLE, &samples);
-#ifdef CONFIG_ADXL345_TRIGGER
+#ifdef CONFIG_ADI_ADXL345_TRIGGER
 	gpio_pin_interrupt_configure_dt(&cfg->interrupt,
 					      GPIO_INT_EDGE_TO_ACTIVE);
 #endif
@@ -433,7 +433,7 @@ static int adxl345_init(const struct device *dev)
 		return -ENODEV;
 	}
 
-#if CONFIG_ADXL345_STREAM
+#if CONFIG_ADI_ADXL345_STREAM
 	rc = adxl345_reg_write_byte(dev, ADXL345_FIFO_CTL_REG, ADXL345_FIFO_STREAM_MODE);
 	if (rc < 0) {
 		LOG_ERR("FIFO enable failed\n");
@@ -456,7 +456,7 @@ static int adxl345_init(const struct device *dev)
 	}
 
 	rc = adxl345_configure_fifo(dev,
-				    IS_ENABLED(CONFIG_ADXL345_STREAM) ? ADXL345_FIFO_STREAMED :
+				    IS_ENABLED(CONFIG_ADI_ADXL345_STREAM) ? ADXL345_FIFO_STREAMED :
 									ADXL345_FIFO_BYPASSED,
 				    ADXL345_INT2,
 				    cfg->fifo_config.fifo_samples);
@@ -470,7 +470,7 @@ static int adxl345_init(const struct device *dev)
 		return -EIO;
 	}
 
-#ifdef CONFIG_ADXL345_TRIGGER
+#ifdef CONFIG_ADI_ADXL345_TRIGGER
 	rc = adxl345_init_interrupt(dev);
 	if (rc < 0) {
 		LOG_ERR("Failed to initialize interrupt!");
@@ -494,7 +494,7 @@ static int adxl345_init(const struct device *dev)
 	return 0;
 }
 
-#ifdef CONFIG_ADXL345_TRIGGER
+#ifdef CONFIG_ADI_ADXL345_TRIGGER
 
 #define ADXL345_CFG_IRQ(inst)									   \
 	COND_CODE_1(DT_INST_NODE_HAS_PROP(inst, int1_gpios),					   \
@@ -509,7 +509,7 @@ static int adxl345_init(const struct device *dev)
 
 #else
 #define ADXL345_CFG_IRQ(inst)
-#endif /* CONFIG_ADXL345_TRIGGER */
+#endif /* CONFIG_ADI_ADXL345_TRIGGER */
 
 #define ADXL345_RTIO_SPI_DEFINE(inst)								   \
 	COND_CODE_1(CONFIG_SPI_RTIO,								   \
@@ -579,7 +579,7 @@ static int adxl345_init(const struct device *dev)
 
 #define ADXL345_DEFINE(inst)									   \
 												   \
-	BUILD_ASSERT(!IS_ENABLED(CONFIG_ADXL345_STREAM) ||					   \
+	BUILD_ASSERT(!IS_ENABLED(CONFIG_ADI_ADXL345_STREAM) ||					   \
 		     DT_INST_NODE_HAS_PROP(inst, fifo_watermark),				   \
 		     "Streaming requires fifo-watermark property. Please set it in the"		   \
 		     "device-tree node properties");						   \
@@ -590,9 +590,9 @@ static int adxl345_init(const struct device *dev)
 		     "fifo-watermark must be between 1 and 32. Please set it in "		   \
 		     "the device-tree node properties");					   \
 												   \
-	IF_ENABLED(CONFIG_ADXL345_STREAM, (ADXL345_RTIO_DEFINE(inst)));				   \
+	IF_ENABLED(CONFIG_ADI_ADXL345_STREAM, (ADXL345_RTIO_DEFINE(inst)));				   \
 	static struct adxl345_dev_data adxl345_data_##inst = {					   \
-	IF_ENABLED(CONFIG_ADXL345_STREAM, (.rtio_ctx = &adxl345_rtio_ctx_##inst,		   \
+	IF_ENABLED(CONFIG_ADI_ADXL345_STREAM, (.rtio_ctx = &adxl345_rtio_ctx_##inst,		   \
 				.iodev = &adxl345_iodev_##inst,))				   \
 	};											   \
 	static const struct adxl345_dev_config adxl345_config_##inst =				   \

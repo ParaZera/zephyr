@@ -16,7 +16,7 @@
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(ADXL345, CONFIG_SENSOR_LOG_LEVEL);
 
-#if defined(CONFIG_ADXL345_TRIGGER_OWN_THREAD) || defined(CONFIG_ADXL345_TRIGGER_GLOBAL_THREAD)
+#if defined(CONFIG_ADI_ADXL345_TRIGGER_OWN_THREAD) || defined(CONFIG_ADI_ADXL345_TRIGGER_GLOBAL_THREAD)
 static void adxl345_thread_cb(const struct device *dev)
 {
 	const struct adxl345_dev_config *cfg = dev->config;
@@ -49,18 +49,18 @@ static void adxl345_gpio_callback(const struct device *dev,
 
 	gpio_pin_interrupt_configure_dt(&cfg->interrupt, GPIO_INT_DISABLE);
 
-	if (IS_ENABLED(CONFIG_ADXL345_STREAM)) {
+	if (IS_ENABLED(CONFIG_ADI_ADXL345_STREAM)) {
 		adxl345_stream_irq_handler(drv_data->dev);
 	}
 
-#if defined(CONFIG_ADXL345_TRIGGER_OWN_THREAD)
+#if defined(CONFIG_ADI_ADXL345_TRIGGER_OWN_THREAD)
 	k_sem_give(&drv_data->gpio_sem);
-#elif defined(CONFIG_ADXL345_TRIGGER_GLOBAL_THREAD)
+#elif defined(CONFIG_ADI_ADXL345_TRIGGER_GLOBAL_THREAD)
 	k_work_submit(&drv_data->work);
 #endif
 }
 
-#if defined(CONFIG_ADXL345_TRIGGER_OWN_THREAD)
+#if defined(CONFIG_ADI_ADXL345_TRIGGER_OWN_THREAD)
 static void adxl345_thread(void *p1, void *p2, void *p3)
 {
 	ARG_UNUSED(p2);
@@ -74,7 +74,7 @@ static void adxl345_thread(void *p1, void *p2, void *p3)
 	}
 }
 
-#elif defined(CONFIG_ADXL345_TRIGGER_GLOBAL_THREAD)
+#elif defined(CONFIG_ADI_ADXL345_TRIGGER_GLOBAL_THREAD)
 static void adxl345_work_cb(struct k_work *work)
 {
 	struct adxl345_dev_data *drv_data =
@@ -124,7 +124,7 @@ int adxl345_trigger_set(const struct device *dev,
 		int_en = 0U;
 	}
 
-#ifdef CONFIG_ADXL345_STREAM
+#ifdef CONFIG_ADI_ADXL345_STREAM
 	(void)adxl345_configure_fifo(dev, ADXL345_FIFO_BYPASSED, ADXL345_INT2, 0);
 #endif
 
@@ -190,17 +190,17 @@ int adxl345_init_interrupt(const struct device *dev)
 
 	drv_data->dev = dev;
 
-#if defined(CONFIG_ADXL345_TRIGGER_OWN_THREAD)
+#if defined(CONFIG_ADI_ADXL345_TRIGGER_OWN_THREAD)
 	k_sem_init(&drv_data->gpio_sem, 0, K_SEM_MAX_LIMIT);
 
 	k_thread_create(&drv_data->thread, drv_data->thread_stack,
-			CONFIG_ADXL345_THREAD_STACK_SIZE,
+			CONFIG_ADI_ADXL345_THREAD_STACK_SIZE,
 			adxl345_thread, drv_data,
-			NULL, NULL, K_PRIO_COOP(CONFIG_ADXL345_THREAD_PRIORITY),
+			NULL, NULL, K_PRIO_COOP(CONFIG_ADI_ADXL345_THREAD_PRIORITY),
 			0, K_NO_WAIT);
 
 	k_thread_name_set(&drv_data->thread, dev->name);
-#elif defined(CONFIG_ADXL345_TRIGGER_GLOBAL_THREAD)
+#elif defined(CONFIG_ADI_ADXL345_TRIGGER_GLOBAL_THREAD)
 	drv_data->work.handler = adxl345_work_cb;
 #endif
 
