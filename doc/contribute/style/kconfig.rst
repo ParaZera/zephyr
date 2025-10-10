@@ -53,7 +53,7 @@ Naming Conventions
 
 * An enabling symbol name should consist of keywords to provide the context
   of the symbol in a scope from most general to most specific
-  (e.g. *Driver Type* -> *Manufacturer* -> *Driver Name*).
+  (e.g. *Driver Type* -> *Driver Name*).
 
 * The prompt for an enabling symbol should use the same logic as the symbol
   name itself but use the keywords in reversed order.
@@ -66,11 +66,11 @@ Naming Conventions
 
 The specific formats by subtree:
 
-* **Drivers (/drivers)**: Use the format ``{Driver Type}_{Manufacturer}_{Driver Name}`` for
-  symbols and ``{Driver Name} ({Manufacturer}) {Driver Type} driver`` for prompts.
+* **Drivers (/drivers)**: Use the format ``{Driver Type}_{Driver Name}`` for
+  symbols and ``{Driver Name} {Driver Type} driver`` for prompts.
 
-* **Sensors (/drivers/sensors)**: Use the format ``SENSOR_{Manufacturer}_{Sensor Name}`` for symbols
-  and ``{Sensor Name} ({Manufacturer}) {Sensor Type} sensor driver`` for prompts.
+* **Sensors (/drivers/sensors)**: Use the format ``SENSOR_{Sensor Name}`` for symbols
+  and ``{Sensor Name} {Sensor Type} sensor driver`` for prompts.
 
 * **Architecture (/arch)**: Many symbols are shared across architectures. Before
   creating new symbols, check if similar ones already exist in other
@@ -88,10 +88,6 @@ Examples
 
 .. literalinclude:: kconfig_example_sensor.txt
    :language: kconfig
-
-.. note::
-   For sensors like LM75 that have multiple manufacturers, the manufacturer
-   can be omitted from the symbol name.
 
 Configuration Symbol Organization
 *********************************
